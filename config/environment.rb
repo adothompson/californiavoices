@@ -35,6 +35,9 @@ Rails::Initializer.run do |config|
   config.gem 'mocha', :version=>"0.5.6"
   config.gem 'redgreen', :version=>"1.2.2"
   config.gem 'gcnovus-avatar', :version=>"0.0.7", :lib => 'avatar'
+  # for backgroundrb
+  config.gem 'chronic', :version => "0.2.3"
+  config.gem 'packet', :version => "0.1.10"
   
   
   
