@@ -8,15 +8,10 @@ Rails::Initializer.run do |config|
   
   # Cookie sessions (limit = 4K)
   config.action_controller.session = {
-    :session_key => '_your_app_name',
-    :secret      => 'make a secure key here'
+    :session_key => '_californiavoices',
+    :secret      => '3d2bfc4c9b0e0e8410833a8533af8a24537759b36d86ca2965acbf2f1dc3be86a45ebe29f379f36b0af8d9283defae16369193f0c22a799bd20e2f0decded6ba'
   }
   config.action_controller.session_store = :active_record_store
-
-  # Use SQL instead of Active Record's schema dumper when creating the test database.
-  # This is necessary if your schema can't be completely dumped by the schema dumper, 
-  # like if you have constraints or database-specific column types
-  # config.active_record.schema_format = :sql
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
@@ -40,9 +35,10 @@ Rails::Initializer.run do |config|
   config.gem 'packet', :version => "0.1.10"
   # flvtool2
   config.gem 'flvtool2', :version => "1.0.6"
-  
-  
-  
+  # amazon web services
+  config.gem 'aws-s3', :lib => 'aws/s3'
+  # rvideo
+  config.gem 'rvideo'  
   
 end
 

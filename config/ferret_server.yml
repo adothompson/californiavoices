@@ -1,4 +1,4 @@
-d___evelopment:
+development:
   port: 10005
 production:
   port: 11050
