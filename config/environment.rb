@@ -33,12 +33,12 @@ Rails::Initializer.run do |config|
   # for backgroundrb
   config.gem 'chronic', :version => "0.2.3"
   config.gem 'packet', :version => "0.1.10"
-  # flvtool2
-  config.gem 'flvtool2', :version => "1.0.6"
   # amazon web services
   config.gem 'aws-s3', :lib => 'aws/s3'
+  # flvtool2
+  #config.gem 'flvtool2', :version => "1.0.6"
   # rvideo
-  config.gem 'rvideo'  
-  
+  #config.gem 'rvideo'  
+
 end
 
