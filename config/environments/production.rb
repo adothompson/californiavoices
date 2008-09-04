@@ -12,7 +12,7 @@ config.action_controller.consider_all_requests_local = false
 config.action_controller.perform_caching             = true
 
 # needed for Avatar::Source::RailsAssetSource
-config.action_controller.asset_host                  = "http://CHANGE THIS VALUE.com"
+config.action_controller.asset_host                  = "http://californiavoices.org"
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
