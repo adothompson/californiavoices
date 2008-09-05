@@ -1,0 +1,524 @@
+/*   BEGIN GLOBAL RESET - lifted from cssplay.co.uk  */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+body {
+	line-height: 1;
+	color: black;
+	background: url(../images/grad.png) repeat-x;
+}
+ol, ul {
+	list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+
+/*   END GLOBAL RESET  */
+
+body{
+	background: url(/images/decor/grad_back.png) repeat-x #b2c4ff; 
+	font-family: "Trebuchet MS";
+	font-size: 13px;
+}
+
+#wrapper{
+	width: 891px;
+	margin: 0 auto;
+}
+
+#header{
+	margin-top: 37px;
+	height: 102px;
+	background: url(/images/decor/header_test.png) no-repeat;
+	position: relative;
+}
+
+#logo{
+	position: relative;
+}
+	
+	#logo a{
+		display: block;
+		width: 216px;
+		height: 150px;
+		background: url(/images/decor/logo.png) no-repeat center center;
+		position: absolute;
+		left: -50px;
+		top: -30px;
+		text-indent: -9000px;
+	}
+	
+	* html #logo a{
+		background: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/decor/logo.png')
+	}
+
+.head_nav{
+	float: left;
+	position: relative;
+	padding-top: 20px;
+	overflow: hidden;
+	font-size: 13px;
+	line-height: 16px;
+}
+
+#menu{
+	width: 324px;
+	margin-left: 175px;
+}
+
+	* html #menu{
+		margin-left: 88px;
+	}
+	
+	#menu a{
+		color: #000;
+	}
+
+	#menu span{
+		display: block;
+		float: left;
+		margin: 0 8px;
+		font-size: 30px;
+		line-height: 60px;
+	}
+
+	#menu .selected a{color: #999;}
+
+	#menu a:hover{
+		color: #d00;
+	}
+
+#user_menu{
+	width: 188px;
+}
+	
+	#user_menu a#upload{
+		position: absolute;
+		left: 120px;
+		font-size: 16px;
+		font-weight: bold;
+		padding-right: 12px;
+		background: url(/images/decor/upload_arrow.png) center right no-repeat;
+	}
+	
+	#user_menu span{
+		text-align: center;
+		display: block;
+		font-size: 22px;
+		line-height: 60px;
+	}
+	
+	#user_menu ul{
+		padding: 0 10px;
+		text-align: right;
+	}
+
+#misc_menu{
+	width: 188px;
+}
+
+	#misc_menu ul{
+		padding: 0 10px;
+	}
+
+
+
+/*      */
+
+
+
+#content_top{
+	background: url(/images/decor/main_top.png) no-repeat;
+	padding-top: 20px;
+}
+
+#content_tile{
+	background: url(/images/decor/main_tile.png) repeat-y;
+}
+
+#content_end{
+	height: 29px;
+	background: url(/images/decor/main_end.png) no-repeat;
+}
+
+#content_pad{
+	padding: 14px;
+}
+
+#search_form{
+	display: block;
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+	#search_form #keyword{
+		width: 370px;
+		border: 1px solid #333;
+		padding: 2px;
+		background: url(/images/decor/search_grad.png) repeat-x;
+	}
+	
+	#search_form #keyword:focus{
+		border: 1px solid #018301;
+	}
+	
+
+#content{
+	float: left;
+	width: 452px;
+	margin-left: 10px;
+	line-height: 20px;
+}
+
+	#content_tile ol,
+	#content_tile ul{
+		padding-left: 20px;
+	}
+
+	#content_tile li{
+		list-style: square;
+	}
+
+	#content .video{
+		background: #fff;
+		width: 436px;
+		height: 336px;
+		border: 1px solid #666;
+		margin-bottom: 12px;
+	}
+		
+	.comments{
+		border: 1px solid #bbb;
+		margin: 14px 0;
+		padding: 4px;
+		background: #fff;
+	}
+	
+		.comments h4{
+			font-size: 16px;
+			font-weight: bold;
+			margin: 0;
+		}
+		
+		.comments cite{
+			font-size: 12px;
+			color: #999;
+			line-height: 16px;
+		}
+
+		.avatar{
+			background: #def;
+			display: block;
+			float: left;
+			margin-right: 5px;
+		}
+		
+		
+#side{
+	float: right;
+	width: 358px;
+}
+
+	.white_box,
+	.blue_box{
+		border: 1px solid #999;
+		background: url(/images/decor/side_yell_grad.png) repeat-x bottom #fff;
+		margin-right: 10px;
+		padding: 10px;
+		margin-bottom: 10px;
+		line-height: 20px;
+	}
+	.white_box{background: #fff;}
+	
+	.blue_box .a_block{
+		display: block;
+		margin: 10px 0;
+		font-weight: bold;
+		letter-spacing: 1px;
+		font-size: 16px;
+	}
+	
+	.video_list .vid_item{
+		margin-bottom: 10px;
+	}
+	
+	.video_list .vid_item img{
+		/* remove bkgrnd color + height/width */
+		background: #000;
+		height: 64px;
+		width: 64px;
+		display: block;
+		float: left;
+		margin-right: 5px;
+		
+	}
+	
+	.video_list .vid_item h3{
+		margin: 0;
+	}
+	
+	.video_list .vid_item cite{
+		color: #999;
+		font-size: 12px;
+	}
+	
+/*  for login  */
+form p,
+.sessions #content form p{
+	margin-bottom: 10px;
+}
+
+
+/*  groups  */
+	
+	/* note, replace this with .avatar!!!  */
+.groups .show #content img{
+	float: left;
+	margin-right: 5px;
+}
+	
+	
+	
+
+
+#footer{
+	text-align: center;
+	font-size: 12px;
+	color: #666;
+}
+
+/*  shared font styling  */
+
+a{
+	text-decoration: none;
+	color: #03f;
+}
+a:hover{color: #d00;}
+
+.underline{
+	font-weight: bold;
+	margin: 4px 0 12px 0;
+	border-bottom: 1px solid;
+}
+
+h1{font-size: 22px; line-height: 22px; 	margin: 4px 0 14px 0; font-weight: bold;}
+h2{font-size: 20px; line-height: 20px;	margin: 4px 0 12px 0; font-weight: bold;}
+h3{font-size: 18px; line-height: 18px;	margin: 4px 0 10px 0; font-weight: bold;}
+h4{font-size: 16px; line-height: 16px;	margin: 4px 0 8px 0; font-weight: bold;}
+
+input.submit{
+	border: 1px outset #999;
+	padding: 2px;
+	background: #fff;
+}
+
+input.submit:hover{
+	border: 1px solid #333;
+	background: #eef;
+}
+
+input.f_text {
+	border: 1px outset #5d740d;
+	width: 120px;
+	padding: 1px;
+}
+	.groups input.f_text,
+	.users input.f_text{
+		width: 200px;
+	}
+
+input.f_text:hover {
+	border: 1px solid #5d740d;
+	background: #fff;
+}
+
+input.f_text:focus{
+	background: #fffead;
+}
+
+.blue_top{
+	background: url(/images/decor/head_blue_grad.png) repeat-x #fff;
+}
+
+
+ /***** Global Classes *****/
+
+ .clear         { clear:both; }
+ .float-left    { float:left; }
+ .float-right   { float:right; }
+
+ .text-left     { text-align:left; }
+ .text-right    { text-align:right; }
+ .text-center   { text-align:center; }
+ .text-justify  { text-align:justify; }
+
+ .bold          { font-weight:bold; }
+ .italic        { font-style:italic; }
+ .underline     { border-bottom:1px solid; }
+ .highlight     { background:#ffc; }
+
+ .wrap          { width:960px;margin:0 auto; }
+
+ .img-left      { float:left;margin:4px 10px 4px 0; }
+ .img-right     { float:right;margin:4px 0 4px 10px; }
+
+ .nopadding     { padding:0; }
+ .noindent      { margin-left:0;padding-left:0; }
+ .nobullet      { list-style:none;list-style-image:none; }/* style fixes */
+p
+{ padding-bottom: 1em;  }
+
+
+/* player page */
+#body h1
+{ font-size: 1.4em;
+  padding: 5px 0;
+  margin: 0;
+}
+#vid-player
+{ border: 1px solid #999;
+  margin: 0 auto;
+  padding: 0;
+  background: #000;
+}
+#body #vid-stats
+{ font-size: 0.8em;
+  text-align: center;
+  padding: 15px 0 0 0;}
+
+#body #vid-stats span
+{ color: #666;
+  font-weight: bold;
+  padding: 0 0 0 10px;}
+
+/* vid info */
+#vid-info
+{ border: 1px solid #ccc;
+  background: #eee;
+  padding: 5px;
+  font-size: .8em;}
+
+#vid-info .vid
+{ border-top: 1px dotted #ccc;
+  margin: 10px 0 0 0;}
+
+#vid-info .vid h2
+{ font-size: 1.2em;
+  font-weight: bold;}
+
+#vid-info span
+{ font-weight: bold;
+  color: #333;}
+
+/* video upload */
+#upload-form dl
+{ background: #DDE6F7;
+  padding: 5px;
+  font-size: .8em;}
+
+#upload-form dd
+{ display: block;
+  width: 90px;
+  float: left;
+  padding-right: 5px;
+  text-align: right;}
+
+#upload-form dt
+{ padding: 5px; }
+
+#upload-form dt.note
+{ font-size: .5em;
+  font-style: italic;
+  text-align: right;}
+
+#upload-form dd label
+{ font-weight: bold;}
+
+#upload-form textarea
+{ width: 289px;
+  height: 76px}
+#upload-form p.submit
+{ text-align: center; }
+
+/* new vids */
+
+div.new-vid-wrap
+{
+  width: 120px;
+  float: left;
+  margin: 5px;
+}
+
+div.new-vid-txt
+{
+  margin: -1em 0 0 .5em;
+}
+
+/* tag cloud */
+.css1 { font-size: 1.0em; }
+.css2 { font-size: 1.2em; }
+.css3 { font-size: 1.4em; }
+.css4 { font-size: 1.6em; }
+
+/* videos index page */
+.vid 
+{
+    
+}
+.vid-img 
+{  
+    background: transparent url(/images/vid-bk.png) top left no-repeat;
+    width: 119px;
+    height: 86px;
+    padding: 3px;
+}
+.vid-odd .vid-img 
+{
+    float: left;
+}
+.vid-odd .vid-txt
+{
+    clear: right;
+}
+.vid-even .vid-img
+{
+    float: right;
+}
+.vid-even .vid-txt
+{
+    clear: left;
+}
