@@ -5,6 +5,8 @@ class ProfilesController < ApplicationController
   before_filter :search_results, :only => [:index, :search]
   skip_filter :login_required, :only=>[:show, :index, :feed, :search]
 
+  #layout 'cavoices'
+  
   def show
     unless @profile.youtube_username.blank?
       begin

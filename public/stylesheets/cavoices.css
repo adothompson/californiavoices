@@ -58,6 +58,7 @@ body{
 #wrapper{
 	width: 891px;
 	margin: 0 auto;
+	text-align: left;
 }
 
 #header{

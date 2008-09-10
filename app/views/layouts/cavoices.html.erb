@@ -31,30 +31,23 @@
             <% if @u.nil? or @u.new_record? %>
               <span><%= link_to 'Sign-up', signup_path %> or <%= link_to 'Login', login_path %></span>
             <% else %>	
-	    <%= link_to 'Upload', '#', :id => 'upload' %>
 	    <ul>
+	      <li><%= link_to 'Upload', '#', :id => 'upload' %></li>
 	      <li class="text-left"><strong>Hi, <%= @u.f %>!</strong></li>
 	      <li><%= link_to('Dashboard', @p) if @p %></li>
+	      <li><%= link_to('Admin', admin_users_path) if @p && @p.user.is_admin %></li>
 	      <li><%= link_to '(logout)', logout_path %></li>
 	    </ul>
             <% end %>
 	</div>
 	<div id="misc_menu" class="head_nav">
-	  <ul>
-	    <li><%= link_to('Admin', admin_users_path) if @p && @p.user.is_admin %></li>
-	  </ul>
+	  <%= render :partial => "shared/#{params[:controller].match(/admin/) ? 'admin_search' : 'search'}" %>
 	</div> <!-- end misc_menu -->
       </div>
 
       <div id="content_tile">
 	<div id="content_top">
-          <div id="content_pad">
-	    
-	    <!-- search here -->
-   
-              <%= render :partial => "shared/#{params[:controller].match(/admin/) ? 'admin_search' : 'search'}" %>
-   
-
+          <div id="content_pad">   
 	    <div id="content">
 	      <%= yield %>
 	    </div>

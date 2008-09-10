@@ -98,14 +98,14 @@ jq(function(){
 	jq('.jstruncate').truncate({max_length: 50});
 	
 	jq('#search_q').bind('focus.search_query_field', function(){
-		if(jq(this).val()=='Search for Friends'){
+		if(jq(this).val()=='Search ...'){
 			jq(this).val('');
 		}
 	});
 	
 	jq('#search_q').bind('blur.search_query_field', function(){
 		if(jq(this).val()==''){
-			jq(this).val('Search for Friends');
+			jq(this).val('Search ...');
 		}
 	});
 	

@@ -30,9 +30,9 @@ Rails::Initializer.run do |config|
   config.gem 'mocha', :version=>"0.5.6"
   config.gem 'redgreen', :version=>"1.2.2"
   config.gem 'gcnovus-avatar', :version=>"0.0.7", :lib => 'avatar'
-  # for backgroundrb
-  config.gem 'chronic', :version => "0.2.3"
-  config.gem 'packet', :version => "0.1.10"
+  # TODO: for backgroundrb - maybe doesn't need to be included here?
+  #config.gem 'chronic', :version => "0.2.3"
+  #config.gem 'packet', :version => "0.1.12"
   # amazon web services
   config.gem 'aws-s3', :lib => 'aws/s3'
   # flvtool2

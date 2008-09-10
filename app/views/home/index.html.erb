@@ -1,43 +1,56 @@
-
-
 <% content_for :head do%>
 <%= auto_discovery_link_tag(:rss, "http://#{SITE}/latest_comments.rss", :title=>"Latest Comments") %>
 <%= auto_discovery_link_tag(:rss, "http://#{SITE}/newest_members.rss", :title=>"Newest Members") %>
 <% end%>
 
+<% content_for :side do %>
+<div class="blue_box">
+  <h2 class="underline">Welcome to California Voices</h2>
+  <img src="/images/take-one.png" alt="CA Voices: Take One" style="float: right;" />
+  <h3>Take One (May 21, 2008)</h3>
+  <p>California Voices is an after-school digital storytelling program designed to guide students to have a greater commitment to academic achievement, career goals and civic engagement, while preserving the legacy of elders who have made significant contributions to culture, community, and country.</p>
+  <p>Facilitators guide a group of 15-20 students, five hours per week in the art of finding compelling storytellers, conducting interviews, preparing research, scriptwriting, storyboarding, producing and editing video and music.</p>
+  <p>At the conclusion of the school year, student teams have several well-crafted videos to present to their school and community, in addition to being included in the California Voices archive.</p>
+
+  <h3>California Voices Topics</h3>
+  <ul>
+    <li>Culture</li>
+    <li>Civic</li>
+    <li>Veterans</li>
+    <li>Youth Issues</li>
+  </ul>
+
+  <h3>Regions</h3>
+  <ul>
+    <li>San Joaquin Valley</li>
+    <li>Sacramento</li>
+  </ul>
+</div>
+<% end %>
+
+<div class="white_box">
+  <h2 class="underline">Newest Stories</h2>
+  <%# render :partial => 'stories/newest_story', :collection => new_stories %>
+  <br style="clear: both" />
+</div>
+
+<div class="white_box">
+  <h2 class="underline">Newest Members</h2>
+  <%= render :partial => 'profiles/newest_member', :collection => new_members %>
+  <br style="clear: both" />
+</div>
+
+<div class="blue_box">
+  <h2 class="underline">Tags</h2>
+  <div class="tag-cloud">
+    <%# render :partial => 'layouts/tag_cloud', :local => [@tags] %>
+  </div>
+</div>
+
+
 <div>
-  <img src="/images/main_graphic.jpg" class="left" title="main graphic" alt="main graphic" />
   <div class="front_right_column right" style="margin-top: 0px;">
     <%= render :partial => 'profiles/featured', :locals => {:profile => Profile.featured_profile[:profile]} %>
     <div class="clear"></div>   
-  </div>
-
-  <div>
-    <div id="front_left_column" class="left"> 
-      <h2>Latest Comments</h2>
-      <%= render :partial => 'comments/comment', :collection => recent_comments %>
-      
-       <h2>Newest Forum Topics</h2>
-      <%= render :partial => 'forum_topics/new_topic', :collection => recent_forum_posts %>
-    </div>
-
-    <div id="front_middle_column" class="left"> 
-      <h2>Newest Members</h2>
-      <%= render :partial => 'profiles/newest_member', :collection => new_members %>
-    </div>
-
-    <div class="front_right_column right">
-      <h2>Newest Pictures</h2>
-      <% newest_pictures.each do |picture|%>
-      <div class="image left small_down_image">
-        <div>
-          <%= link_to image(picture, :small), profile_photos_path(picture.profile) %>
-        </div>
-      </div>
-      <% end %>
-      <div class="clear"></div>  
-    </div>
-
-    <div class="clear"></div>
   </div>
 </div>
