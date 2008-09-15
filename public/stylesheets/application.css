@@ -35,10 +35,9 @@ li				{list-style: none;}
 #plain_wrapper 	{width: 450px; margin: 0px auto; padding: 0px; background: black url(/images/top_hearts_black.png) no-repeat; border: 10px solid #666;}
 
 
-#content		{color: #d2d2d2; background: #0a1c34 url(/images/site_bg.png) repeat-x; padding: 0 0 0 0; min-height: 600px; height:auto !important; height:600px;}
-#just_for_hearts{background:  url(/images/top_hearts_black.png) no-repeat;}
+/*#content		{color: #d2d2d2; background: #0a1c34 url(/images/site_bg.png) repeat-x; padding: 0 0 0 0; min-height: 600px; height:auto !important; height:600px;}*/
 #main			{padding: 0 25px 25px 25px; }
-#content_top	{padding: 10px;  margin: 0 15px 5px 15px;}
+/*#content_top	{padding: 10px;  margin: 0 15px 5px 15px;}*/
 
 #search input	{border: none; padding: 2px; font-size: 15px; width: 250px;}
 #search input.button	{background: url(/images/search_button.png) no-repeat; width: 30px; height: 30px; margin: 0 0 -1px 2px;}
@@ -80,7 +79,7 @@ input.button	{background: #666; color: #ddd; font-weight: bold; font-size: 10px;
 input.button:hover	{background: #2ab769; }
 div.button		{background: #1a1a1a; border-top: 1px dotted #666; padding: 10px; height: 25px; margin-top: 15px;}
 h1				{font-size: 28px;  letter-spacing: -1.2pt; color: white; font-weight: bold; margin: 25px 0 20px 0;}
-h2				{font-size: 14px; color: white; font-weight: bold; margin: 0 0 10px 0; text-transform: capitalize;}
+/*h2				{font-size: 14px; color: white; font-weight: bold; margin: 0 0 10px 0; text-transform: capitalize;}*/
 form h2			{margin: 30px 0 10px 0; border-bottom: 1px dotted #666; padding-bottom: 7px; clear: both;}
 h3				{font-size: 13px; margin-bottom: 10px;}
 #general_info,
@@ -105,7 +104,7 @@ a.big_link		{display: block; font-size: 12px;}
 h2 a			{text-transform: capitalize; font-weight: normal; font-size: 11px;}
 
 .inside_box		{margin: 0 10px 0 10px;}
-#sub_nav a		{margin: 0 9px 0 0; padding: 5px; background: #1a1a1a; border: 1px solid #333;}
+#sub_nav a		{margin: 0 9px 0 0; padding: 5px; /*background: #1a1a1a;*/ border: 1px solid #333;}
 #sub_nav 		{margin: 0 0 20px 0; padding-top: 10px;}
 .avatar			{margin: 0 15px 5px 5px; width: 160px;}
 .avatar img		{border: 1px solid #666;}
@@ -193,7 +192,7 @@ h2 span			{font-weight: normal; font-size: 11px; margin-left: 5px;}
 #forum_list_header, ul .forum, .forum_topics tr {
 	margin: 3px 0px 3px 0px;
 	position: relative;
-	background: #222;
+	background: #ccc;
 }
 
 #forum_list_header div, ul .forum div, .forum_topics td {
@@ -248,7 +247,7 @@ div.forum table, table.forum_topics {
 }
 
 table.forum_topics tr.labels {
-	background: #313131;
+	/*background: #313131;*/
 	font-weight: bold;
 }
 

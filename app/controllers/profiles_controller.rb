@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
   before_filter :search_results, :only => [:index, :search]
   skip_filter :login_required, :only=>[:show, :index, :feed, :search]
 
-  #layout 'cavoices'
+  layout 'cavoices'
   
   def show
     unless @profile.youtube_username.blank?
@@ -21,8 +21,6 @@ class ProfilesController < ApplicationController
     rescue Exception, OpenURI::HTTPError
       @flickr = []
     end
-      
-      
 
     @comments = @profile.comments.paginate(:page => @page, :per_page => @per_page)
     

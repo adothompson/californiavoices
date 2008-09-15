@@ -28,29 +28,21 @@
 </div>
 <% end %>
 
-<div class="white_box">
+<div class="white_box blue_top">
   <h2 class="underline">Newest Stories</h2>
   <%# render :partial => 'stories/newest_story', :collection => new_stories %>
   <br style="clear: both" />
 </div>
 
-<div class="white_box">
+<div class="blue_box">
   <h2 class="underline">Newest Members</h2>
   <%= render :partial => 'profiles/newest_member', :collection => new_members %>
   <br style="clear: both" />
 </div>
 
-<div class="blue_box">
+<div class="white_box blue_top">
   <h2 class="underline">Tags</h2>
   <div class="tag-cloud">
     <%# render :partial => 'layouts/tag_cloud', :local => [@tags] %>
-  </div>
-</div>
-
-
-<div>
-  <div class="front_right_column right" style="margin-top: 0px;">
-    <%= render :partial => 'profiles/featured', :locals => {:profile => Profile.featured_profile[:profile]} %>
-    <div class="clear"></div>   
   </div>
 </div>

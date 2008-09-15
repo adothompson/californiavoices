@@ -1,9 +1,11 @@
 class HomeController < ApplicationController
+  
   skip_before_filter :login_required	
 
   layout 'cavoices'
   
   def contact
+    render :layout => 'cavoices-plain'
     return unless request.post?
     body = []
     params.each_pair { |k,v| body << "#{k}: #{v}"  }
@@ -14,7 +16,7 @@ class HomeController < ApplicationController
 
  
   def index
-    check_featured
+    #check_featured
     respond_to do |wants|
       wants.html {render}
       wants.rss {render :partial =>  'profiles/newest_member', :collection => new_members}

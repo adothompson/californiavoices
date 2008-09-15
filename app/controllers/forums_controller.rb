@@ -1,7 +1,10 @@
 class ForumsController < ApplicationController
+
   skip_filter :login_required, :only => [:show, :index]
   before_filter :setup
 
+  layout 'cavoices'
+  
   def index
     @forums = Forum.find(:all, :order => "position ASC")
     get_response :xml_object => @forums

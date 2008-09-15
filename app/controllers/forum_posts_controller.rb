@@ -2,6 +2,8 @@ class ForumPostsController < ApplicationController
 
   before_filter :setup
   skip_filter :login_required, :only => [:show, :index]  
+
+  layout 'cavoices'
   
   def index
     redirect_to forum_path(@forum)

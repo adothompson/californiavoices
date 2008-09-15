@@ -2,7 +2,7 @@
 <div class="forum">
   
   <%= link_to 'Forums', forums_path %> > <%=h @forum.name %>
-  <h1 class="forum_name"><%=h @forum.name %></h1>
+  <h2 class="underline forum_name"><%=h @forum.name %></h2>
   <div id="forum_details">
     <%= forum_details(@forum)%>
   </div>

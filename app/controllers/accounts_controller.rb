@@ -1,9 +1,9 @@
 class AccountsController < ApplicationController
   skip_before_filter :login_required, :except => :logout
   skip_after_filter :store_location
-  layout 'plain'
 
-
+  #layout 'plain'
+  layout 'cavoices-plain'
 
   def login
     redirect_back_or_default(home_path) and return if @u
