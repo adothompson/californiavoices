@@ -492,4 +492,17 @@ div.new-vid-txt
     line-height: 20px;
 }
 
-/* forms */
+/* top bar */
+#welcome ul li
+{
+    padding-bottom: .5em;
+}
+
+/* flashes */
+
+.flashnotice
+{
+    color: #fff;
+    width: 340px;
+    border: 1px solid #ccc;
+}
