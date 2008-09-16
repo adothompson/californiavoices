@@ -37,7 +37,7 @@ module ApplicationHelper
     else
       return
     end
-    content_tag 'div', flash_to_display, :class => "flash#{level} white_box"
+    content_tag 'div', flash_to_display, :class => "flash#{level}"
   end
 
   def activerecord_error_list(errors)

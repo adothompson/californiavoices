@@ -10,7 +10,7 @@ body  {
 	background: url(/images/bg.jpg);
 	margin: 0px auto;
 	padding: 0px; 
-	color: #eee; 
+	/*color: #eee;*/
 	text-align: center;
 	line-height: 160%;
 }	
@@ -31,7 +31,7 @@ a:hover 		{text-decoration: underline; }
 .right 			{float: right;}
 .hidden			{display: none;}
 li				{list-style: none;}
-#wrapper 		{width: 870px; margin: 0px auto; padding: 0px;}
+#wrapper 		{width: 891px; margin: 0px auto; padding: 0px; text-align: left;}
 #plain_wrapper 	{width: 450px; margin: 0px auto; padding: 0px; background: black url(/images/top_hearts_black.png) no-repeat; border: 10px solid #666;}
 
 
@@ -42,7 +42,7 @@ li				{list-style: none;}
 #search input	{border: none; padding: 2px; font-size: 15px; width: 250px;}
 #search input.button	{background: url(/images/search_button.png) no-repeat; width: 30px; height: 30px; margin: 0 0 -1px 2px;}
 
-#welcome img	{width: 17px; margin: 0 5px -5px 0; border: 1px solid #666;}
+#welcome img	{width: 17px; margin: 0 5px -5px 0; border: 1px solid #999;}
 #demo_links	a	{float: right; padding: 5px; background: #222; color: #f9f2a1; margin: 0 3px 0 3px;}
 #demo_links	a:hover	{background: #999; color: #333;}
 #top a			{font-size: 20px;  font-weight: bold; color: #e185a7; margin: 0 8px;}
@@ -78,7 +78,7 @@ textarea,
 input.button	{background: #666; color: #ddd; font-weight: bold; font-size: 10px; width: auto; height: auto; padding: 5px;}
 input.button:hover	{background: #2ab769; }
 div.button		{background: #1a1a1a; border-top: 1px dotted #666; padding: 10px; height: 25px; margin-top: 15px;}
-h1				{font-size: 28px;  letter-spacing: -1.2pt; color: white; font-weight: bold; margin: 25px 0 20px 0;}
+/*h1				{font-size: 28px;  letter-spacing: -1.2pt; color: white; font-weight: bold; margin: 25px 0 20px 0;}
 /*h2				{font-size: 14px; color: white; font-weight: bold; margin: 0 0 10px 0; text-transform: capitalize;}*/
 form h2			{margin: 30px 0 10px 0; border-bottom: 1px dotted #666; padding-bottom: 7px; clear: both;}
 h3				{font-size: 13px; margin-bottom: 10px;}
@@ -95,11 +95,10 @@ h3				{font-size: 13px; margin-bottom: 10px;}
 #column_r li,
 #column_r ul	{padding: 14px 0;}
 .activity_box	{border-top: 4px solid #6a1534; clear: both; padding: 5px 0 0 0; margin: 15px 0 25px 0;}
-.activity_box strong	{color: white;}
 .learn			{border-top: none;}
 a.big_link		{display: block; font-size: 12px;}
 
-.bio_stuff		{width: 370px;}
+.bio_stuff		{width: 250px;}
 .bio_stuff h1	{margin-top: 0px;}
 h2 a			{text-transform: capitalize; font-weight: normal; font-size: 11px;}
 
@@ -153,7 +152,7 @@ h1 img			{width: 34px; border: 1px solid #333; margin-bottom: -5px;}
 .feed_item p	{display: inline;}
 .feed_item .right		{border-left: 1px solid #666; padding-left: 3px;margin-left: 3px; float: right; width: 15px;}
 .feed_item .left		{width: 85%; }
-img.icon_small	{width: 20px; margin: 0 1px -5px 0;}
+img.icon_small	{background: #666; width: 20px; margin: 0 1px -5px 0;}
 
 .inside_box li	{padding: 2px;}
 .inside_box ul	{padding-left: 15px;}
@@ -179,146 +178,7 @@ ul#post_history	{padding: 0 0 0 0;}
 .search_row a	{font-size: 10px;}
 .search_row div {text-align: center; }
 
-.flickr_image {padding:15px;}
-.flickr			{width: 125px; height: 125px;}
-
 h2 span			{font-weight: normal; font-size: 11px; margin-left: 5px;}
-
-
-/*
-* Forum Styles
-*/
-
-#forum_list_header, ul .forum, .forum_topics tr {
-	margin: 3px 0px 3px 0px;
-	position: relative;
-	background: #ccc;
-}
-
-#forum_list_header div, ul .forum div, .forum_topics td {
-	padding: 3px 10px;
-}
-
-#forum_list_header .info {
-	margin-right: 220px;
-}
-
-#forum_list_header .last_post, ul .forum .last_post {
-	position: absolute;
-	right: 0px;
-	width: 200px;
-	height: 100%;
-/*	border-left: 1px solid #000;*/
-	text-align: right;
-}
-
-ul .forum .info {
-	margin-right: 220px;
-}
-
-
-ul .forum:hover, .forum_topics tr:hover	{
-	background: #313131;
-}
-
-ul .forum .details {
-	margin-bottom: 5px;
-	display: block;
-}
-
-ul .forum h2 {
-	margin-bottom: 0px;
-}
-
-ul .forum h2 a{
-	font-size: 14px
-}
-
-div.forum .forum_name, .forum_topic h1 {
-	margin-bottom: 5px;
-}
-
-div.forum .forum_description {
-	margin-top: 10px;
-}
-
-div.forum table, table.forum_topics {
-	width: 100%;
-}
-
-table.forum_topics tr.labels {
-	/*background: #313131;*/
-	font-weight: bold;
-}
-
-table.forum_topics td.last_post {
-	text-align: right;
-	width: 200px;
-}
-
-table.forum_topics td.posts {
-	text-align: center;
-	width: 50px;
-}
-
-table.forum_topics td.controls {
-	text-align: right;
-	width: 100px;
-}
-table.forum_topics td {
-	border-bottom: 1px solid #000;
-}
-
-
-.forum_topic .post {
-	position: relative;
-	margin-bottom: 30px;
-}
-
-.forum_topic .info {
-	left: 0;
-	top: 0;
-	position: absolute;
-	width: 150px;
-	height: 100%;
-	background: #222;
-	padding: 10px;
-}
-
-.forum_topic .body {
-	padding: 10px;
-	margin-left: 170px;
-	border-top: 3px solid #222;
-	min-height: 90px;
-}
-
-.topic_followup .body {
-	text-align: right;
-}
-
-.topic_followup textarea{
-	float: none;
-	width: 100%;
-	margin-bottom: 10px;
-}
-
-
-#new_forum_topic textarea {
-	width: 600px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #message				{padding: 4px; z-index: 100000; position: fixed; top: 38%; left: 40%; display: none; background: black; color: white; font-size: 18px;}
 #waiter 				{z-index:100000; position:fixed; background:white; display: none; height:13px; width:208px; border:0px; top: 50%; left: 50%; margin: -6px 0 0 -104px;}
