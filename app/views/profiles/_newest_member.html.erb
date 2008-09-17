@@ -1,9 +1,9 @@
-<div class="newest_member clear">
-  <div class="left">
-    <%= icon newest_member %> 
+<div class="newest_member left" style="margin-right: 1em;">
+  <div style="border: 1px solid #333; padding: 2px;">
+    <%= icon newest_member %>
   </div>
-  <div class="left" style="margin-left: 10px;">
-    <%= link_to h(newest_member.f), newest_member %>
+  <div style="text-align: center; margin-top: .25em;">
+    <%= link_to h(newest_member.user.login), newest_member %>    
   </div>
-  <div class="clear"></div>
-</div>
+</div>  
+

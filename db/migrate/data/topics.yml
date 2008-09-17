@@ -1,0 +1,20 @@
+culture:
+  id: 1
+  name: Culture
+  description: "add description"
+  icon: ""
+civic:
+  id: 2
+  name: Civic
+  description: "add description"
+  icon: ""
+veterans:
+  id: 3
+  name: Veterans
+  description: "add description"
+  icon: ""
+youth:
+  id: 4
+  name: "Youth Issues"
+  description: "add description"
+  icon: ""

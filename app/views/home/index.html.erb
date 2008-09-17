@@ -1,6 +1,6 @@
 <% content_for :head do%>
-<%= auto_discovery_link_tag(:rss, "http://#{SITE}/latest_comments.rss", :title=>"Latest Comments") %>
-<%= auto_discovery_link_tag(:rss, "http://#{SITE}/newest_members.rss", :title=>"Newest Members") %>
+  <%= auto_discovery_link_tag(:rss, "http://#{SITE}/latest_comments.rss", :title=>"Latest Comments") %>
+  <%= auto_discovery_link_tag(:rss, "http://#{SITE}/newest_members.rss", :title=>"Newest Members") %>
 <% end%>
 
 <% content_for :side do %>
@@ -11,19 +11,12 @@
   <!--<p>Facilitators guide a group of 15-20 students, five hours per week in the art of finding compelling storytellers, conducting interviews, preparing research, scriptwriting, storyboarding, producing and editing video and music.</p>
   <p>At the conclusion of the school year, student teams have several well-crafted videos to present to their school and community, in addition to being included in the California Voices archive.</p>-->
 
-  <h3>California Voices Topics</h3>
-  <ul>
-    <li>Culture</li>
-    <li>Civic</li>
-    <li>Veterans</li>
-    <li>Youth Issues</li>
-  </ul>
+  <%= render :partial => 'topics/list' %>
 
-  <h3>Regions</h3>
-  <ul>
-    <li>San Joaquin Valley</li>
-    <li>Sacramento</li>
-  </ul>
+  <%= render :partial => 'regions/list'%>
+  
+  <div class="clear"></div>
+  <!-- end :side -->
 </div>
 <% end %>
 
@@ -36,7 +29,7 @@
 <div class="blue_box">
   <h2 class="underline">Newest Members</h2>
   <%= render :partial => 'profiles/newest_member', :collection => new_members %>
-  <br style="clear: both" />
+<div class="clear"></div>
 </div>
 
 <div class="white_box blue_top">
@@ -45,3 +38,5 @@
     <%# render :partial => 'layouts/tag_cloud', :local => [@tags] %>
   </div>
 </div>
+
+<div class="clear"></div>

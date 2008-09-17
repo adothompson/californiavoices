@@ -1,0 +1,16 @@
+culture:
+  name: Culture
+  description: "add description"
+  icon: ""
+civic:
+  name: Civic
+  description: "add description"
+  icon: ""
+veterans:
+  name: Veterans
+  description: "add description"
+  icon: ""
+youth:
+  name: "Youth Issues"
+  description: "add description"
+  icon: ""

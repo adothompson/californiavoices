@@ -86,8 +86,7 @@ class Profile < ActiveRecord::Base
   def to_param
     "#{self.id}-#{f.to_safe_uri}"
   end
-  
-  
+    
   def has_network?
     !Friend.find(:first, :conditions => ["invited_id = ? or inviter_id = ?", id, id]).blank?
   end

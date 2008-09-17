@@ -33,4 +33,7 @@ ActionController::Routing::Routes.draw do |map|
     home.contact '/contact', :action => 'contact'
   end
 
+  map.resources :topics
+  map.resources :regions
+  
 end

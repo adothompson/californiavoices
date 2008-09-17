@@ -4,7 +4,6 @@ module HomeHelper
     Photo.find(:all, :order => 'created_at desc', :limit => limit)
   end
   
-  
   def recent_comments limit = 10
     Comment.find(:all, :order => 'created_at desc', :limit => limit, :conditions => "commentable_type='Profile'")
   end
@@ -16,6 +15,5 @@ module HomeHelper
   def recent_forum_posts(limit = 10)
     ForumTopic.find(:all, :limit => limit, :order => 'forum_posts.created_at DESC', :include => [:forum, :posts])
   end
-  
   
 end

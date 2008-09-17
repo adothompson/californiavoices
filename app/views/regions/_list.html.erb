@@ -1,0 +1,13 @@
+<%-
+
+   regions ||= Region.find :all 
+
+-%>
+
+<div class="left">
+<h3>Regions</h3>
+<ul>
+  <%= regions_li regions %>
+</ul>
+</div>
+
