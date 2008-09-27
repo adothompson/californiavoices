@@ -1,7 +1,9 @@
 class CreateStories < ActiveRecord::Migration
   def self.up
     create_table :stories do |t|
-
+      t.string :title
+      t.text :description
+      t.integer :profile_id, :topic_id, :region_id
       t.timestamps
     end
   end

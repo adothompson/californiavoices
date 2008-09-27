@@ -36,4 +36,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :topics
   map.resources :regions
   
+  # stories and videos
+  
 end
