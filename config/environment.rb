@@ -28,7 +28,7 @@ Rails::Initializer.run do |config|
   config.gem 'ferret', :version=> '0.11.6' # not included in build
   config.gem 'hpricot', :version=>"0.6.161" # not inlcuded in build
   config.gem 'mocha', :version=>"0.5.6"
-  config.gem 'redgreen', :version=>"1.2.2"
+  config.gem 'redgreen', :version=>"1.2.2" unless ENV['TM_MODE']
   config.gem 'gcnovus-avatar', :version=>"0.0.7", :lib => 'avatar'
   # TODO: for backgroundrb - maybe doesn't need to be included here?
   #config.gem 'chronic', :version => "0.2.3"
@@ -42,3 +42,4 @@ Rails::Initializer.run do |config|
 
 end
 
+Less::JsRoutes.generate!
