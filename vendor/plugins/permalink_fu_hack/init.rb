@@ -1,1 +1,0 @@
-require 'permalink_fu_hack'
