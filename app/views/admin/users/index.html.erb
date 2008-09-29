@@ -1,15 +1,26 @@
+<% content_for :side do %>
 
-<div class="activity_box">
-  <h2>Search Results</h2>
+<div class="blue_box">
 
-  <% @results.each do |p| %>
-  <div class="<%= cycle('odd','even') %> search_row left">
-    <div><%= icon p, :small %></div>
-    <div><%= link_to h(p.f), p %></div>
-    <div><%= mail_to h(p.email), p.email %></div>
-    <div><%= link_to_remote "#{ p.is_active ? 'deactivate' : 'activate' }", {:url => formatted_admin_user_path(p, 'js'), :method => :put}, {:id => p.dom_id('link')} %></div>						
-  </div>
-  <% end %>
-  <div class="clear"></div>
-  <%= will_paginate @results %>
+  <h2 class="underline">More Admin Options</h2>
+
+  <p>coming soon...</p>
+
+</div>
+
+<% end %>
+
+<div class="white_box blue_top">
+    <h1>User Accounts</h2>
+
+    <% @results.each do |p| %>
+    <div class="<%= cycle('odd','even') %> search_row">
+      <div class="left"><%= icon p, :small %></div>
+      <div><%= link_to h(p.f), p %></div>
+      <div><%= mail_to h(p.email), p.email %></div>
+      <div><%= link_to_remote "#{ p.is_active ? 'deactivate' : 'activate' }", {:url => formatted_admin_user_path(p, 'js'), :method => :put}, {:id => p.dom_id('link')} %></div>						
+    </div>
+    <% end %>
+    <div class="clear"></div>
+    <%= will_paginate @results %>
 </div>

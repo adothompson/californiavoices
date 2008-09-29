@@ -173,7 +173,8 @@ img.icon_small	{background: #666; width: 20px; margin: 0 1px -5px 0;}
 ul#post_history	{padding: 0 0 0 0;}
 .date_details_white {color: white;}
 
-.search_row		{width: 90px; height: 100px; overflow: hidden; padding: 5px; margin: 0 10px 15px 0;}
+.search_row		{/*width: 90px; height: 100px;*/ /*overflow: hidden;*/ padding: 5px; margin: 0 1em 15px 0;}
+div.odd {background: #ccc; }
 .search_row img	{margin-bottom: 5px;}
 .search_row a	{font-size: 10px;}
 .search_row div {text-align: center; }

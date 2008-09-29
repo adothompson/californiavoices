@@ -1,8 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_filter :search_results, :except => [:destroy]
   
-  layout 'cavoices'
-  
   def index
     render
   end

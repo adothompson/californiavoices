@@ -1,10 +1,13 @@
 <%
-#locals
-label ||= 'Reading a Message'
-@title = label
-%>
+   #locals
+   label ||= 'Reading a Message'
+   @title = label
+   %>
 
-<h1><%= sanitize label %></h1>
+<div class="white_box blue_top">
+
+  <h1><%= sanitize label %></h1>
 
 
-<%= render :partial => "messages/message" %>
+  <%= render :partial => "messages/message" %>
+</div>
