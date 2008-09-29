@@ -3,9 +3,7 @@ class ProfilesController < ApplicationController
   prepend_before_filter :get_profile, :except => [:new, :create, :index, :search]  
   before_filter :setup, :except => [:index, :search]
   before_filter :search_results, :only => [:index, :search]
-  skip_filter :login_required, :only=>[:show, :index, :feed, :search]
-
-  layout 'cavoices'
+  skip_filter :login_required, :only=>[:index, :feed, :search]
   
   def show
     # TODO: create search for users last video and display on profile page

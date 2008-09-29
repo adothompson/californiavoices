@@ -3,8 +3,6 @@ class PhotosController < ApplicationController
   prepend_before_filter :get_profile
   before_filter :setup
   
-  
-  
   def index
     respond_to do |wants|
       wants.html {render}

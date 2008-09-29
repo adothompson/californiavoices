@@ -2,8 +2,6 @@ module ApplicationHelper
   require 'digest/sha1'
   require 'net/http'
   require 'uri'
-  
-  
 
   def less_form_for name, *args, &block
     options = args.last.is_a?(Hash) ? args.pop : {}

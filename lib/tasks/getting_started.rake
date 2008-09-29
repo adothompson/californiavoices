@@ -4,7 +4,7 @@ namespace :gems do
     task :install do
       windoz = /win32/ =~ RUBY_PLATFORM
       gems = %w[
-          rflickr
+          #rflickr
           rmagick
           RedCloth
         ]

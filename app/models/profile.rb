@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 2
+# Schema version: 20080917012917
 #
 # Table name: profiles
 #

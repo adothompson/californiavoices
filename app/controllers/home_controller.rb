@@ -1,11 +1,9 @@
 class HomeController < ApplicationController
   
   skip_before_filter :login_required	
-
-  layout 'cavoices'
   
   def contact
-    render :layout => 'cavoices-plain'
+    render :layout => 'plain'
     return unless request.post?
     body = []
     params.each_pair { |k,v| body << "#{k}: #{v}"  }

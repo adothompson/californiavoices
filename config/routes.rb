@@ -33,9 +33,11 @@ ActionController::Routing::Routes.draw do |map|
     home.contact '/contact', :action => 'contact'
   end
 
+  # stories and videos
+
   map.resources :topics
   map.resources :regions
   
-  # stories and videos
-  
+  map.resources :stories
+    
 end
