@@ -1,0 +1,17 @@
+<div class="white_box blue_top">
+  <div>
+    <h2 class="underline">Stories</h2>
+
+
+    <% @results.each do |r| %>
+    <div class="search_row left text_c" >
+      <div><%=  %></div>
+      <div><%= link_to h(r.title), r %></div>
+    </div>
+    <% end %>
+
+
+    <%= will_paginate @results %>
+  </div>
+  <div class="clear"></div>
+</div>
