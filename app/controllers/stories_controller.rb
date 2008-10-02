@@ -27,9 +27,9 @@ class StoriesController < ApplicationController
     @story = Story.new params[:story]
     @story.profile = user.profile
     # the video
-    @video = Video.new params[:video]
+    @upload = Upload.new params[:upload]
     # the service story+video
-    @service = VideoUploadService.new(@story, @video)
+    @service = VideoUploadService.new(@story, @upload)
     
     respond_to do |wants|
       if @service.save

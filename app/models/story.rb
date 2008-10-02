@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20080917012917
+# Schema version: 20081002014149
 #
 # Table name: stories
 #
@@ -19,6 +19,7 @@ class Story < ActiveRecord::Base
   
   # basic relationships
   has_many :videos
+  has_many :uploads
   belongs_to :profile
   belongs_to :topic
   belongs_to :region

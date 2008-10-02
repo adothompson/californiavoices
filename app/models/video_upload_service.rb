@@ -1,23 +1,23 @@
 class VideoUploadService
   
-  attr_reader :story, :video
+  attr_reader :story, :upload
   
-  def initialize(story, video)
+  def initialize(story, upload)
     @story = story
-    @video = video
+    @upload = upload
   end
   
   def save
     return false unless valid?
     begin
       Story.transaction do
-        if @video.new_record?
-          @story.videos.destroy_all if @story.videos
-          @video.story = @story
-          @video.save!
+        if @upload.new_record?
+          @story.uploads.destroy_all if @story.uploads
+          @upload.story = @story
+          @upload.save!
         end
         @story.save!
-        queue_for_conversion(@video)
+        queue_for_conversion(@upload)
         true
       end
     rescue
@@ -26,22 +26,18 @@ class VideoUploadService
   end
   
   def valid?
-    @story.valid? && @video.valid?
+    @story.valid? && @upload.valid?
   end
   
   protected 
   
-  def queue_for_conversion(video)
-    # check for existing worker?
-    ## send to worker if existing
-    # create new worker otherwise
-    # TODO: create backgroundrb worker to handle queue (autostart = true)
-    # TODO: queue worker passes of to conversion worker
+  def queue_for_conversion(upload)
+    encoding_profiles = EncodingProfile.find(:all, :order => 'position ASC')
+    
+    encoding_profiles.each do |p|
+      job = EncodingJob.new(:upload_id => upload.id, :status => 'queued', encoding_profile_id => p.id)
+      job.save!
+    end
   end
   
-#   def start_conversion_worker(video_file)
-#     # new backgroundrb start
-#     MiddleMan.new_worker(:worker => :voices_worker, :job_key => video_file.id, :data => video_file.id)
-#   end
-
 end

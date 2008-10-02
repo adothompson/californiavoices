@@ -1,6 +1,8 @@
 class CreateUploads < ActiveRecord::Migration
   def self.up
     create_table :uploads do |t|
+      t.integer :story_id, :size
+      t.string :filename, :content_type
 
       t.timestamps
     end

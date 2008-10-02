@@ -25,10 +25,8 @@
 
   <h2 class="underline">Step 2: Chose Video File to Upload</h2>
   
-  <%= error_messages_for :video %>
-
-  <% fields_for @video do |v| %>
-    <%= v.file_field :uploaded_data %>
+  <% fields_for @upload do |u| %>
+    <%= u.file_field :uploaded_data %>
   <% end %>
 
   <div class="row button">
