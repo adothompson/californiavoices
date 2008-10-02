@@ -1,0 +1,40 @@
+<%
+   #locals
+   topics ||= Topic.find(:all)
+   regions ||= Region.find(:all)
+%>
+
+
+<div>
+  <%= error_messages_for :story %>
+
+  <% less_form_for @story, :html=>{:multipart=>true, :class=>"box no_top"} do |f| %>
+
+  <h2 class="underline">Step 1: Describe Your Story</h2>
+
+  <%= f.text_field :title %>
+  <%= f.text_area :description %>
+  <div class="row clear">
+    <%= f.label :topic_id %> <%= f.collection_select :topic_id, topics, :id, :name, {:prompt => true} %>
+    <div class="clear"></div>
+  </div>
+  <div class="row clear">
+    <%= f.label :region_id %> <%= f.collection_select :region_id, regions, :id, :name, {:prompt => true} %>
+    <div class="clear"></div>
+  </div>
+
+  <h2 class="underline">Step 2: Chose Video File to Upload</h2>
+  
+  <%= error_messages_for :video %>
+
+  <% fields_for @video do |v| %>
+    <%= v.file_field :uploaded_data %>
+  <% end %>
+
+  <div class="row button">
+    <%= f.submit 'Save and Upload Video', :class => 'button' %>
+  </div>
+
+</div>
+
+<% end %>

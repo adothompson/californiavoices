@@ -1,2 +1,19 @@
-<h1>Stories#new</h1>
-<p>Find me in app/views/stories/new.html.erb</p>
+<% content_for :side do %>
+
+<div class="blue_box">
+  <h2>Instructions?</h2>
+  <p>coming soon...</p>
+  <p>maybe a test upload for admins</p>
+</div>
+
+<% end %>
+
+<div class="white_box blue_top">
+  <h1>California Voices Story Creation</h1>
+  <div id="sub_nav">
+    <%= link_to('&larr; Jump to Dashboard', @p) if @p %>  
+  </div>
+
+  <%= render :partial => 'stories/form' %>
+
+</div>

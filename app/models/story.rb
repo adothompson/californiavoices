@@ -23,6 +23,17 @@ class Story < ActiveRecord::Base
   belongs_to :topic
   belongs_to :region
   
+  def topic_name
+    self.topic.name
+  end
+  
+  def region_name
+    self.region.name
+  end
+  
+  # TODO: add tags to search
+  acts_as_ferret :fields => [ :title, :description, :topic_name, :region_name ], :remote=>true
+  
   # validations
   validates_presence_of :title, :description, :topic_id, :region_id, :profile_id
 
@@ -37,11 +48,17 @@ class Story < ActiveRecord::Base
     "#{self.id}-#{title.to_safe_uri}"
   end
   
+#   def topic
+#     self.topic.name
+#   end
+  
+#   def region
+#     self.region.name
+#   end
+  
   # comments
   has_many :comments, :as => :commentable, :order => "created_at asc"
   
-  # add tags to search
-  acts_as_ferret :fields => [ :title, :description, :topic, :region ], :remote=>true
   def self.search query = '', options = {}
     query ||= ''
     q = '*' + query.gsub(/[^\w\s-]/, '').gsub(' ', '* *') + '*'

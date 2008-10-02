@@ -25,7 +25,7 @@ div, span, td, .text_l {text-align: left;}
 .text_r 		{text-align: right;}
 .text_c,
 div .text_c 		{text-align: center;}
-a 				{font: normal  "Arial", sans-serif; text-decoration: none; color: #f9f2a1; }
+a 			{font: normal "Arial", sans-serif; text-decoration: none; color: #f9f2a1; }
 a:hover 		{text-decoration: underline; }	
 .left 			{float: left;}
 .right 			{float: right;}
@@ -142,7 +142,7 @@ h2.getting_started	{border-bottom: 1px dotted #333; padding: 15px 0 3px 0;}
 h1 img			{width: 34px; border: 1px solid #333; margin-bottom: -5px;}
 
 .flashnotice	{padding: 3px;  margin-bottom: 10px; clear: both; background: #555;}
-.flasherror		{padding: 3px;  margin-bottom: 10px;  clear: both; background: #e22c6f; color: white;}
+.flasherror	{padding: 3px;  margin-bottom: 10px;  clear: both; background: #e22c6f; color: white;}
 
 #blog .row textarea	{height: 400px; width: 400px;}
 #blog .row input	{width: 400px;}

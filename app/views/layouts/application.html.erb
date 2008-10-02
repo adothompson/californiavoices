@@ -22,8 +22,8 @@
       <div id="header">
 	<div id="logo"><%= link_to 'Home', home_path %></div>
 	<div id="menu" class="head_nav">
-	  <span class="selected"><%= link_to 'Home', home_path %></span>
-	  <span><%= link_to 'Stories', stories_path %></span>
+	  <span <%= "class=\"selected\"" if controller.controller_name == "home" %>><%= link_to 'Home', home_path %></span>
+	  <span <%= "class=\"selected\"" if controller.controller_name == "stories" %>><%= link_to 'Stories', stories_path %></span>
 	  <span><%= link_to 'Groups', '#' %></span>
 	</div>
 
@@ -32,7 +32,7 @@
             <span><%= link_to 'Sign-up', signup_path %> or <%= link_to 'Login', login_path %></span>
           <% else %>	
 	  <ul>
-	    <li><%= link_to 'Upload', '#', :id => 'upload' %></li>
+	    <li><%= link_to 'Upload', new_story_path, :id => 'upload' %></li>
 	    <li class="text-left"><%= link_to 'Contact Us', contact_path %></li>
 	    <li><%= link_to('Dashboard', @p) if @p %></li>
 	    <li><%= link_to('Admin', admin_users_path) if @p && @p.user.is_admin %></li>

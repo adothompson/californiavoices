@@ -1,9 +1,9 @@
 class StoriesController < ApplicationController
   include ApplicationHelper
-  prepend_before_filter :get_profile, :except => [:new, :create, :index, :search]  
-  before_filter :setup, :except => [:index, :search]
+  prepend_before_filter :get_profile, :except => [:index, :search, :show]  
+  before_filter :setup, :except => [:index, :search, :show]
   before_filter :search_results, :only => [:index, :search]
-  skip_filter :login_required, :only=>[:show, :index, :search]
+  skip_filter :login_required, :only=>[:index, :search, :show]
     
   def index
     render :action => :search
@@ -14,12 +14,37 @@ class StoriesController < ApplicationController
   end
 
   def show
+    @story = Story.find params[:id]
   end
 
   def new
+    @story = Story.new
+    @video = Video.new
   end
 
   def create
+    # the story
+    @story = Story.new params[:story]
+    @story.profile = user.profile
+    # the video
+    @video = Video.new params[:video]
+    # the service story+video
+    @service = VideoUploadService.new(@story, @video)
+    
+    respond_to do |wants|
+      if @service.save
+        flash[:notice] = 'Your video was successfully uploaded.  It is in queue for processing.'
+        wants.html { redirect_to(@story) }
+        wants.xml  { render :xml      => @story,
+                            :status   => :created,
+                            :location => @story }
+      else
+        flash[:error] = 'Error: your story could not be saved.'
+        wants.html { render :action => :new }
+        wants.xml  { render :xml => @story.errors,
+                     :status => :unprocessable_entity }
+      end
+    end
   end
 
   def edit
@@ -42,7 +67,7 @@ class StoriesController < ApplicationController
   end
   
   def get_profile
-    @profile = Profile[params[:profile_id]]
+    @profile = Profile.find user.profile
   end
   
   def setup

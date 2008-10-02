@@ -26,7 +26,7 @@ body{
 
 * html #logo a{
     background: none;
-    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/decor/logo.png')
+    /*filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/decor/logo.png')*/
 }
 
 .head_nav{
@@ -383,36 +383,6 @@ p
 { font-weight: bold;
   color: #333;}
 
-/* video upload */
-#upload-form dl
-{ background: #DDE6F7;
-  padding: 5px;
-  font-size: .8em;}
-
-#upload-form dd
-{ display: block;
-  width: 90px;
-  float: left;
-  padding-right: 5px;
-  text-align: right;}
-
-#upload-form dt
-{ padding: 5px; }
-
-#upload-form dt.note
-{ font-size: .5em;
-  font-style: italic;
-  text-align: right;}
-
-#upload-form dd label
-{ font-weight: bold;}
-
-#upload-form textarea
-{ width: 289px;
-  height: 76px}
-#upload-form p.submit
-{ text-align: center; }
-
 /* new vids */
 
 div.new-vid-wrap
@@ -505,4 +475,19 @@ div.new-vid-txt
     color: #fff;
     width: 340px;
     border: 1px solid #ccc;
+}
+.flasherror
+{
+  color: #fff;
+  width: 340px;
+  border: 1px solid #ccc;
+  font-weight: bold;
+}
+
+/* form errors */
+
+div.fieldWithErrors label 
+{
+  font-weight: bold;
+  color: #f00;
 }
