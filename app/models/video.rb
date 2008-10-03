@@ -1,11 +1,10 @@
 # == Schema Information
-# Schema version: 20081002014149
+# Schema version: 20081003212204
 #
 # Table name: videos
 #
 #  id                  :integer(11)   not null, primary key
 #  story_id            :integer(11)   
-#  parent_id           :integer(11)   
 #  encoding_profile_id :integer(11)   
 #  width               :integer(11)   
 #  height              :integer(11)   
@@ -23,7 +22,6 @@
 #  container           :string(255)   
 #  video_codec         :string(255)   
 #  audio_codec         :string(255)   
-#  status              :string(255)   
 #  created_at          :datetime      
 #  updated_at          :datetime      
 #
