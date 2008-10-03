@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20081003212204
+# Schema version: 20081002014149
 #
 # Table name: encoding_jobs
 #
@@ -16,7 +16,7 @@
 
 class EncodingJob < ActiveRecord::Base
 
-  belongs_to :encoding_profile
+
   belongs_to :upload
   belongs_to :video
   

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20081003212204
+# Schema version: 20081002014149
 #
 # Table name: uploads
 #
@@ -16,8 +16,6 @@ class Upload < ActiveRecord::Base
   
   # relationships
   belongs_to :story
-  has_many :encoding_jobs
-  belongs_to :encoding_profiles
   
   # mime types:
   # Container => Mime type
