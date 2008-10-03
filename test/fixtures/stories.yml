@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20081002014149
+# Schema version: 20081003212204
 #
 # Table name: stories
 #
@@ -11,6 +11,7 @@
 #  region_id   :integer(11)   
 #  created_at  :datetime      
 #  updated_at  :datetime      
+#  upload_id   :integer(11)   
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

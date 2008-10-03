@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20081002014149
+# Schema version: 20081003212204
 #
 # Table name: encoding_profiles
 #
@@ -23,6 +23,7 @@
 
 class EncodingProfile < ActiveRecord::Base
 
-  
+  has_many :encoding_jobs
+  has_many :uploads
   
 end
