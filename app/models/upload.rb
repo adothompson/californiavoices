@@ -51,7 +51,7 @@ class Upload < ActiveRecord::Base
   def process
     self.valid?
     self.read_metadata
-    self.upload_to_s3
+    # self.upload_to_s3 - upload needs to be saved first
     self.add_to_queue
   end
 
@@ -64,16 +64,9 @@ class Upload < ActiveRecord::Base
     logger.info "\n\n# #{self.id} #CAVOICES - reading metadata for #{self.temp_path}.\n\n"
     
     inspector = RVideo::Inspector.new(:file => self.temp_path)
-
-    # create a hash of the metadata to return... use this to save the video?
     
-    # raise FormatNotRecognised unless inspector.valid? and inspector.video?
-        
-#     self.fps = (inspector.fps rescue nil)
-    
-#     self.audio_codec = (inspector.audio_codec rescue nil)
-#     self.audio_sample_rate = (inspector.audio_sample_rate rescue nil)
-    
+    raise FormatNotRecognised unless inspector.valid? and inspector.video?
+            
     logger.info "\n\n"
 
     upload_metadata = {
@@ -95,16 +88,66 @@ class Upload < ActiveRecord::Base
 
     return upload_metadata
   end
-  
-  def upload_to_s3
-    # create background process to upload to s3 - with metadata on video
-    # should just require creating video object and saving to use attachfu
-    true
-  end
-  
+    
   def add_to_queue
+    logger.info "\n\n# #{self.id} #CAVOICES - adding to queue for #{self.temp_path}.\n\n"
     # for each encoding profile create an encodingjob w/ status queued
-    true
+    
+    # Die if there's no profiles!
+    if EncodingProfile.find(:all).empty?
+      logger.info "\n\nThere are no encoding profiles!\n\n"
+      return nil
+    end
+
+    # TODO: Allow manual selection of encoding profiles used in both form and api
+    # For now we will just encode to all available profiles
+    EncodingProfile.find(:all).each do |p|
+      logger.info "\n\n# #{self.id} #CAVOICES - looping profiles #{self.temp_path}.\n\n"
+      unless self.find_encoding_for_profile(p)
+        logger.info "\n\n# #{self.id} #CAVOICES - did not find profile, time to create.\n\n"
+        self.create_encoding_for_profile(p)
+      end
+    end
+    return true
   end
+  
+  def create_encoding_for_profile(p)
+    logger.info "\n\n# #{self.id} #CAVOICES - creating profile for #{self.temp_path}.\n\n"
+
+    encoding = EncodingJob.new
+    encoding.status = 'queued'
+    
+    encoding.upload_id = self.id
+    encoding.encoding_profile_id = p.id
+    
+    encoding.save
+    return encoding    
+  end
+
+  # Finders
+  
+  def find_encoding_for_profile(p)
+    logger.info "\n\n# #{self.id} #CAVOICES - find encoding profile for #{self.temp_path}.\n\n"
+
+    e = EncodingJob.find(:first, :conditions => ["upload_id = ? AND encoding_profile_id = ?", self.id, p.id]) ? true : false
+    
+    logger.info "# #{self.id} #CAVOICES - #{e}"
+    
+    return e
+  end
+  
+  # Exceptions
+  
+  class VideoError < StandardError; end
+  #class NotificationError < StandardError; end
+  
+  # 404
+  # TODO: not valid error in upload controller (stories?)
+  # class NotValid < VideoError; end
+  
+  # 500
+  # TODO: no file submitted check should happen in upload controller (stories)
+  # class NoFileSubmitted < VideoError; end
+  class FormatNotRecognised < VideoError; end
   
 end
