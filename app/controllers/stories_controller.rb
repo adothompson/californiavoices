@@ -19,7 +19,7 @@ class StoriesController < ApplicationController
 
   def new
     @story = Story.new
-    @video = Video.new
+    @upload = Upload.new
   end
 
   def create

@@ -16,7 +16,7 @@
 
 class EncodingJob < ActiveRecord::Base
 
-
+  # relationships
   belongs_to :upload
   belongs_to :video
   

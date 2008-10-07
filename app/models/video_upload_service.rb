@@ -17,8 +17,6 @@ class VideoUploadService
           @upload.save!
         end
         @story.save!
-        queue_for_conversion(@upload)
-        true
       end
     rescue
         false
@@ -27,17 +25,5 @@ class VideoUploadService
   
   def valid?
     @story.valid? && @upload.valid?
-  end
-  
-  protected 
-  
-  def queue_for_conversion(upload)
-    encoding_profiles = EncodingProfile.find(:all, :order => 'position ASC')
-    
-    encoding_profiles.each do |p|
-      job = EncodingJob.new(:upload_id => upload.id, :status => 'queued', encoding_profile_id => p.id)
-      job.save!
-    end
-  end
-  
+  end  
 end
