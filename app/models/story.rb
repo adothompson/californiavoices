@@ -3,12 +3,12 @@
 #
 # Table name: stories
 #
-#  id          :integer(11)   not null, primary key
+#  id          :integer(4)    not null, primary key
 #  title       :string(255)   
 #  description :text          
-#  profile_id  :integer(11)   
-#  topic_id    :integer(11)   
-#  region_id   :integer(11)   
+#  profile_id  :integer(4)    
+#  topic_id    :integer(4)    
+#  region_id   :integer(4)    
 #  created_at  :datetime      
 #  updated_at  :datetime      
 #

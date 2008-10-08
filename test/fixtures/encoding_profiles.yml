@@ -3,15 +3,15 @@
 #
 # Table name: encoding_profiles
 #
-#  id                :integer(11)   not null, primary key
-#  width             :integer(11)   
-#  height            :integer(11)   
-#  video_bitrate     :integer(11)   
-#  audio_bitrate     :integer(11)   
-#  audio_sample_rate :integer(11)   
-#  audio_channels    :integer(11)   
-#  fps               :integer(11)   
-#  position          :integer(11)   
+#  id                :integer(4)    not null, primary key
+#  width             :integer(4)    
+#  height            :integer(4)    
+#  video_bitrate     :integer(4)    
+#  audio_bitrate     :integer(4)    
+#  audio_sample_rate :integer(4)    
+#  audio_channels    :integer(4)    
+#  fps               :integer(4)    
+#  position          :integer(4)    
 #  name              :string(255)   
 #  player            :string(255)   
 #  container         :string(255)   

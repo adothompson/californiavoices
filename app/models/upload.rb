@@ -3,9 +3,9 @@
 #
 # Table name: uploads
 #
-#  id           :integer(11)   not null, primary key
-#  story_id     :integer(11)   
-#  size         :integer(11)   
+#  id           :integer(4)    not null, primary key
+#  story_id     :integer(4)    
+#  size         :integer(4)    
 #  filename     :string(255)   
 #  content_type :string(255)   
 #  created_at   :datetime      

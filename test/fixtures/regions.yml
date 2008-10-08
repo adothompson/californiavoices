@@ -3,10 +3,10 @@
 #
 # Table name: regions
 #
-#  id            :integer(11)   not null, primary key
+#  id            :integer(4)    not null, primary key
 #  name          :string(255)   
 #  icon          :string(255)   
-#  stories_count :integer(11)   default(0)
+#  stories_count :integer(4)    default(0)
 #  created_at    :datetime      
 #  updated_at    :datetime      
 #

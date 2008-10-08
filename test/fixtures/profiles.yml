@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 2008100601002
+# Schema version: 20081003212204
 #
 # Table name: profiles
 #
@@ -21,7 +21,7 @@
 #  email            :string(255)   
 #  is_active        :boolean(1)    
 #  youtube_username :string(255)   
-#  flickr_username  :string(255)   default(""), not null
+#  flickr_username  :string(255)   
 #  last_activity_at :datetime      
 #  time_zone        :string(255)   default("UTC")
 #

@@ -3,19 +3,19 @@
 #
 # Table name: videos
 #
-#  id                  :integer(11)   not null, primary key
-#  story_id            :integer(11)   
-#  encoding_profile_id :integer(11)   
-#  width               :integer(11)   
-#  height              :integer(11)   
-#  duration            :integer(11)   
-#  encoding_time       :integer(11)   
-#  video_bitrate       :integer(11)   
-#  audio_bitrate       :integer(11)   
-#  audio_sample_rate   :integer(11)   
-#  audio_channels      :integer(11)   
-#  fps                 :integer(11)   
-#  size                :integer(11)   
+#  id                  :integer(4)    not null, primary key
+#  story_id            :integer(4)    
+#  encoding_profile_id :integer(4)    
+#  width               :integer(4)    
+#  height              :integer(4)    
+#  duration            :integer(4)    
+#  encoding_time       :integer(4)    
+#  video_bitrate       :integer(4)    
+#  audio_bitrate       :integer(4)    
+#  audio_sample_rate   :integer(4)    
+#  audio_channels      :integer(4)    
+#  fps                 :integer(4)    
+#  size                :integer(4)    
 #  filename            :string(255)   
 #  content_type        :string(255)   
 #  player              :string(255)   

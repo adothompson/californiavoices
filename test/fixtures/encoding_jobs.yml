@@ -3,11 +3,11 @@
 #
 # Table name: encoding_jobs
 #
-#  id                  :integer(11)   not null, primary key
-#  upload_id           :integer(11)   
-#  encoding_profile_id :integer(11)   
-#  video_id            :integer(11)   
-#  encoding_time       :integer(11)   
+#  id                  :integer(4)    not null, primary key
+#  upload_id           :integer(4)    
+#  encoding_profile_id :integer(4)    
+#  video_id            :integer(4)    
+#  encoding_time       :integer(4)    
 #  status              :string(255)   
 #  result              :text          
 #  created_at          :datetime      
