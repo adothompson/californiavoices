@@ -50,5 +50,13 @@ class Video < ActiveRecord::Base
                  :max_size => 300.megabytes
                  )
   validates_as_attachment
+
+  # Attr Helpers
+  
+  def embed_html
+  end
+  
+  def embed_js
+  end
   
 end

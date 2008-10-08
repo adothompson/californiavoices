@@ -61,9 +61,9 @@ class Upload < ActiveRecord::Base
   end
   
   def read_metadata
-    logger.info "\n\n# #{self.id} #CAVOICES - reading metadata for #{self.temp_path}.\n\n"
+    logger.info "\n\n# #{self.id} #CAVOICES - reading metadata for #{self.filename}.\n\n"
     
-    inspector = RVideo::Inspector.new(:file => self.temp_path)
+    inspector = RVideo::Inspector.new(:file => self.public_filename)
     
     raise FormatNotRecognised unless inspector.valid? and inspector.video?
             
