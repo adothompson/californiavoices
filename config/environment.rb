@@ -1,5 +1,5 @@
 
-RAILS_GEM_VERSION = '2.1.0' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.1.1' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -17,7 +17,7 @@ Rails::Initializer.run do |config|
   # config.active_record.observers = :cacher, :garbage_collector
 
   # Make Active Record use UTC-base instead of local time
-  config.active_record.default_timezone = :utc
+  config.time_zone = 'UTC'
   
   # Gem dependencies
   config.gem 'will_paginate', :version => '~> 2.2.2'

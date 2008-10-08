@@ -1,12 +1,12 @@
 # == Schema Information
-# Schema version: 20081003212204
+# Schema version: 2008100601002
 #
 # Table name: forums
 #
-#  id          :integer(11)   not null, primary key
+#  id          :integer(4)    not null, primary key
 #  name        :string(255)   
 #  description :text          
-#  position    :integer(11)   
+#  position    :integer(4)    
 #  created_at  :datetime      
 #  updated_at  :datetime      
 #
