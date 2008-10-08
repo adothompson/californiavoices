@@ -19,7 +19,7 @@
   <h3 class="underline">Downloads</h3>
   <ul>
     <% for video in @story.videos %>
-    <li><%= link_to truncate(video.filename, 30), video.public_filename %> (<%= (video.size.bytes)/1.megabyte %> MB)</li>
+    <li>[<%= video.encoding_profile.name %>] <%= link_to truncate(video.filename, 30), video.public_filename %> (<%= (video.size.bytes)/1.megabyte %> MB)</li>
     <% end %>
   </ul>
 </div>

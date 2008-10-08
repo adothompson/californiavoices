@@ -16,7 +16,7 @@ class EncodingWorker < BackgrounDRb::MetaWorker
       save_and_upload_original(encoding)
     else
       # do encoding and save/upload file
-      encoding.encode
+      # encoding.encode
     end
   end
   
@@ -27,6 +27,7 @@ class EncodingWorker < BackgrounDRb::MetaWorker
       # encoding metadata and profile
       video = Video.new encoding.upload.read_metadata
       video.encoding_profile_id = encoding.encoding_profile_id
+      video.story_id = encoding.upload.story_id
       # attachement_fu 
       video.filename = encoding.upload.filename
       video.content_type = encoding.upload.content_type
@@ -34,14 +35,16 @@ class EncodingWorker < BackgrounDRb::MetaWorker
       # save video or die
       video.save!
       
-      logger.info "#{encoding.id} -- #{Time.now} -- "
+      logger.info "#{encoding.id} -- #{Time.now} -- video #{video.id} saved."
       
+      # TODO: grab at least one still image to save 
       
-      encoding_finish = Time.now
-      encoding.encoding_time = (encoding_finish - encoding_begun).to_i
+      encoding.encoding_time = (Time.now - encoding_begun).to_i
       encoding.video_id = video.id
       encoding.status = 'done'
       encoding.save!
+      
+      logger.info "#{encoding.id} -- #{Time.now} -- encoding time: #{encoding.encoding_time}."
     rescue
       
       encoding.status = error

@@ -15,6 +15,9 @@
 require 'rvideo'
 
 class Upload < ActiveRecord::Base
+
+  # attrs access
+  attr_accessible :video_codec, :container, :video_bitrate, :audio_channels, :audio_bitrate, :audio_sample_rate, :audio_codec, :height, :fps, :duration, :width
   
   # relationships
   belongs_to :story
@@ -32,7 +35,7 @@ class Upload < ActiveRecord::Base
   # MP4       => video/mp4
   
   # attachment_fu params
-  has_attachment(:content_type => ['video/x-msvideo','video/x-ms-wmv','video/quicktime','video/mp4','video/x-flv','flv-application/octet-stream','video/mpeg','audio/mpeg'],
+  has_attachment(:content_type => ['video/x-msvideo','video/x-ms-wmv','video/quicktime','video/mp4','video/x-flv','flv-application/octet-stream','video/mpeg'],
                  # :storage => :s3,
                  :storage => :file_system,
                  :path_prefix => 'tmp/uploads',
@@ -42,16 +45,20 @@ class Upload < ActiveRecord::Base
   
   # after create run process?
   after_create do |upload|
-    logger.info "\n\n# #{self.id} #CAVOICES - #{upload.filename} uploaded.\n\n"
+    logger.info "\n\n-- #{self.id} -- CAVOICES - #{upload.filename} uploaded.\n\n"
     upload.process
   end
     
   # Uploads --------------
     
   def process
+    logger.info "\n\n-- #{self.id} -- CAVOICES - process started on #{self.filename}.\n\n"
+
     self.valid?
-    self.read_metadata
-    # self.upload_to_s3 - upload needs to be saved first
+    self.update_attributes self.read_metadata
+    
+    #logger.info "\n\n-- #{self.id} -- CAVOICES - #{self.to_yaml}.\n\n"
+    
     self.add_to_queue
   end
 
@@ -61,14 +68,22 @@ class Upload < ActiveRecord::Base
   end
   
   def read_metadata
-    logger.info "\n\n# #{self.id} #CAVOICES - reading metadata for #{self.filename}.\n\n"
+    logger.info "\n\n# #{self.id} #CAVOICES - reading metadata for #{self.public_filename}.\n\n"
     
-    inspector = RVideo::Inspector.new(:file => self.public_filename)
+    # check if public_filename is exists else use temp_path
+    
+    begin
+      if File.exist?(self.public_filename)
+        inspector = RVideo::Inspector.new(:file => self.public_filename)
+      elsif File.exist?(self.temp_path)
+        inspector = RVideo::Inspector.new(:file => self.temp_path)
+      end
+    rescue
+      raise NoFileSubmitted
+    end
     
     raise FormatNotRecognised unless inspector.valid? and inspector.video?
             
-    logger.info "\n\n"
-
     upload_metadata = {
       :width => (inspector.width rescue nil), 
       :height => (inspector.height rescue nil), 
@@ -83,28 +98,27 @@ class Upload < ActiveRecord::Base
       :audio_channels => (inspector.audio_channels rescue nil)
     }
     
-    logger.info "#{upload_metadata.to_yaml}"
-    logger.info "\n\n"
+    logger.info "\n\n #{upload_metadata.to_yaml} \n\n"
 
     return upload_metadata
   end
     
   def add_to_queue
-    logger.info "\n\n# #{self.id} #CAVOICES - adding to queue for #{self.temp_path}.\n\n"
+    logger.info "\n\n-- #{self.id} -- CAVOICES - adding to queue for #{self.filename}.\n\n"
     # for each encoding profile create an encodingjob w/ status queued
     
     # Die if there's no profiles!
     if EncodingProfile.find(:all).empty?
-      logger.info "\n\nThere are no encoding profiles!\n\n"
+      logger.info "\n\n-- #{self.id} -- CAVOICES - There are no encoding profiles!\n\n"
       return nil
     end
 
     # TODO: Allow manual selection of encoding profiles used in both form and api
     # For now we will just encode to all available profiles
+    logger.info "\n\n-- #{self.id} -- CAVOICES - looping profiles #{self.filename}.\n\n"
     EncodingProfile.find(:all).each do |p|
-      logger.info "\n\n# #{self.id} #CAVOICES - looping profiles #{self.temp_path}.\n\n"
       unless self.find_encoding_for_profile(p)
-        logger.info "\n\n# #{self.id} #CAVOICES - did not find profile, time to create.\n\n"
+        logger.info "\n\n-- #{self.id} -- CAVOICES - did not find profile, time to create.\n\n"
         self.create_encoding_for_profile(p)
       end
     end
@@ -112,7 +126,7 @@ class Upload < ActiveRecord::Base
   end
   
   def create_encoding_for_profile(p)
-    logger.info "\n\n# #{self.id} #CAVOICES - creating profile for #{self.temp_path}.\n\n"
+    logger.info "\n\n-- #{self.id} -- CAVOICES - creating profile for #{self.filename} - #{p.name}.\n\n"
 
     encoding = EncodingJob.new
     encoding.status = 'queued'
@@ -127,13 +141,19 @@ class Upload < ActiveRecord::Base
   # Finders
   
   def find_encoding_for_profile(p)
-    logger.info "\n\n# #{self.id} #CAVOICES - find encoding profile for #{self.temp_path}.\n\n"
+    logger.info "\n\n-- #{self.id} -- CAVOICES - find encoding profile for #{self.filename}.\n\n"
 
     e = EncodingJob.find(:first, :conditions => ["upload_id = ? AND encoding_profile_id = ?", self.id, p.id]) ? true : false
     
-    logger.info "# #{self.id} #CAVOICES - #{e}"
+    logger.info "\n\n-- #{self.id} -- CAVOICES - #{e}"
     
     return e
+  end
+  
+  # Attr Helpers
+  
+  def tmp_filepath
+    self.public_filename
   end
   
   # Exceptions
@@ -147,7 +167,7 @@ class Upload < ActiveRecord::Base
   
   # 500
   # TODO: no file submitted check should happen in upload controller (stories)
-  # class NoFileSubmitted < VideoError; end
+  class NoFileSubmitted < VideoError; end
   class FormatNotRecognised < VideoError; end
   
 end

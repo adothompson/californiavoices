@@ -4,6 +4,7 @@ class QueueWorker < BackgrounDRb::MetaWorker
   def create(args = nil)
     # this method is called, when worker is loaded for the first time
     
+    # TODO: increase timer to several minutes (3-5?)
     add_periodic_timer(10) { check_encoding_queue }
     
   end
@@ -11,8 +12,18 @@ class QueueWorker < BackgrounDRb::MetaWorker
   def check_encoding_queue
     
     if EncodingJob.processing?
-      logger.info "-- #{Time.now} -- there is something in the processing queue."
+      current_encoding = EncodingJob.current_encoding
+      processing_time = (Time.now - e.updated_at).to_i / 60 # minutes since status was updated to processing
+      logger.info "-- #{Time.now} -- there is something in the processing queue (started #{processing_time} minutes ago)."
+      
       # -- is that processing taking too long? updated_at field should be within 40min?
+      if processing_time > 40
+        logger.info "-- #{Time.now} -- the encoding (started #{processing_time} minutes ago) is taking too long and will be ended.."
+        current_encoding.status = 'error'
+        current_encoding.result = 'processing took too long.'
+        current_encoding.save!
+      end
+      
     else
       # if no processing is happening
       # -- find the next job, change it's status to processing
@@ -20,10 +31,12 @@ class QueueWorker < BackgrounDRb::MetaWorker
       
       # set encoding to 'processing'
       e = EncodingJob.next_job
-      e.status = 'processing'
-      e.save!
-      
-      e.start_encoding_worker  
+      if e
+        e.status = 'processing'
+        e.save!
+        
+        e.start_encoding_worker  
+      end
     end
     
     return true
