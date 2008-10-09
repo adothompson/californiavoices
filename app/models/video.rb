@@ -28,6 +28,9 @@
 
 class Video < ActiveRecord::Base
   
+  # attrs access
+  attr_accessible :video_codec, :container, :video_bitrate, :audio_channels, :audio_bitrate, :audio_sample_rate, :audio_codec, :height, :fps, :duration, :width
+  
   # relationships
   belongs_to :story
   belongs_to :encoding_profile
@@ -46,7 +49,6 @@ class Video < ActiveRecord::Base
   # attachment_fu params
   has_attachment(:content_type => ['video/x-msvideo','video/x-ms-wmv','video/quicktime','video/mp4','video/x-flv','flv-application/octet-stream','video/mpeg','audio/mpeg'],
                  :storage => :s3,
-                 # :storage => :file_system,
                  :max_size => 300.megabytes
                  )
   validates_as_attachment

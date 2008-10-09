@@ -19,7 +19,7 @@ class VideoUploadService
         @story.save!
       end
     rescue
-        false
+      false
     end
   end
   

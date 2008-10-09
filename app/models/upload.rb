@@ -36,7 +36,6 @@ class Upload < ActiveRecord::Base
   
   # attachment_fu params
   has_attachment(:content_type => ['video/x-msvideo','video/x-ms-wmv','video/quicktime','video/mp4','video/x-flv','flv-application/octet-stream','video/mpeg'],
-                 # :storage => :s3,
                  :storage => :file_system,
                  :path_prefix => 'tmp/uploads',
                  :max_size => 300.megabytes
@@ -53,35 +52,23 @@ class Upload < ActiveRecord::Base
     
   def process
     logger.info "\n\n-- #{self.id} -- CAVOICES - process started on #{self.filename}.\n\n"
-
-    self.valid?
-    self.update_attributes self.read_metadata
-    
-    #logger.info "\n\n-- #{self.id} -- CAVOICES - #{self.to_yaml}.\n\n"
-    
+    self.read_and_save_metadata
     self.add_to_queue
   end
-
-  def valid?
-    # do we need to check anything else to validate the file?
-    true
-  end
   
-  def read_metadata
+  def read_and_save_metadata
     logger.info "\n\n# #{self.id} #CAVOICES - reading metadata for #{self.public_filename}.\n\n"
     
     # check if public_filename is exists else use temp_path
     
-    begin
-      if File.exist?(self.public_filename)
-        inspector = RVideo::Inspector.new(:file => self.public_filename)
-      elsif File.exist?(self.temp_path)
-        inspector = RVideo::Inspector.new(:file => self.temp_path)
-      end
-    rescue
+    if File.exist?(self.public_filename)
+      inspector = RVideo::Inspector.new(:file => self.public_filename)
+    elsif File.exist?(self.temp_path)
+      inspector = RVideo::Inspector.new(:file => self.temp_path)
+    else
       raise NoFileSubmitted
     end
-    
+        
     raise FormatNotRecognised unless inspector.valid? and inspector.video?
             
     upload_metadata = {
@@ -100,9 +87,9 @@ class Upload < ActiveRecord::Base
     
     logger.info "\n\n #{upload_metadata.to_yaml} \n\n"
 
-    return upload_metadata
+    self.update_attributes upload_metadata
   end
-    
+      
   def add_to_queue
     logger.info "\n\n-- #{self.id} -- CAVOICES - adding to queue for #{self.filename}.\n\n"
     # for each encoding profile create an encodingjob w/ status queued
@@ -152,8 +139,20 @@ class Upload < ActiveRecord::Base
   
   # Attr Helpers
   
-  def tmp_filepath
-    self.public_filename
+  def read_metadata
+    {
+      :width => (self.width rescue nil), 
+      :height => (self.height rescue nil), 
+      :duration => (self.duration rescue nil), 
+      :container => (self.container rescue nil), 
+      :video_codec => (self.video_codec rescue nil), 
+      :video_bitrate => (self.bitrate rescue nil),
+      :fps => (self.fps rescue nil), 
+      :audio_codec => (self.audio_codec rescue nil), 
+      :audio_sample_rate => (self.audio_sample_rate rescue nil),
+      :audio_bitrate => (self.audio_bitrate rescue nil), 
+      :audio_channels => (self.audio_channels rescue nil)
+    }
   end
   
   # Exceptions

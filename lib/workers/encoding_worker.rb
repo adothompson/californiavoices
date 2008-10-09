@@ -1,3 +1,7 @@
+# required to use ActionController::TestUploadedFile 
+require 'action_controller'
+require 'action_controller/test_process.rb'
+
 class EncodingWorker < BackgrounDRb::MetaWorker
   set_worker_name :encoding_worker
   #set_no_auto_load(true)  
@@ -14,42 +18,41 @@ class EncodingWorker < BackgrounDRb::MetaWorker
     if encoding.encoding_profile.name == 'Original'
       # save and upload original
       save_and_upload_original(encoding)
+      return true
     else
       # do encoding and save/upload file
       # encoding.encode
+      return true
     end
   end
   
-  def save_and_upload_original(encoding)
+  def save_and_upload_original(e)
     begin
       encoding_begun = Time.now
       
       # encoding metadata and profile
-      video = Video.new encoding.upload.read_metadata
-      video.encoding_profile_id = encoding.encoding_profile_id
-      video.story_id = encoding.upload.story_id
-      # attachement_fu 
-      video.filename = encoding.upload.filename
-      video.content_type = encoding.upload.content_type
-      video.temp_path = encoding.upload.public_filename
+      v = Video.new(:uploaded_data => ActionController::TestUploadedFile.new(e.upload.public_filename, e.upload.content_type))
+      v.encoding_profile_id = e.encoding_profile_id
+      v.story_id = e.upload.story_id
+      v.update_attributes e.upload.read_metadata
       # save video or die
-      video.save!
+      v.save!
       
-      logger.info "#{encoding.id} -- #{Time.now} -- video #{video.id} saved."
+      logger.info "#{e.id} -- #{Time.now} -- video #{v.id} saved."
       
       # TODO: grab at least one still image to save 
       
-      encoding.encoding_time = (Time.now - encoding_begun).to_i
-      encoding.video_id = video.id
-      encoding.status = 'done'
-      encoding.save!
+      e.encoding_time = (Time.now - encoding_begun).to_i
+      e.video_id = v.id
+      e.status = 'done'
+      e.save!
       
-      logger.info "#{encoding.id} -- #{Time.now} -- encoding time: #{encoding.encoding_time}."
+      logger.info "#{e.id} -- #{Time.now} -- encoding time: #{e.encoding_time}."
     rescue
       
-      encoding.status = error
-      encoding.save!
-      
+      e.status = 'error'
+      logger.info "#{e.id} -- #{Time.now} -- Error - #{$!.class} - #{$!.message}"
+      e.save!
     end
   end
   

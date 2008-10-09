@@ -59,7 +59,7 @@ class EncodingJob < ActiveRecord::Base
   def start_encoding_worker
     worker = MiddleMan.worker(:encoding_worker)
     worker.async_start_next_encoding_job(:job_key => self.id)
-    true
+    return true
   end
   
   def encode
@@ -88,7 +88,7 @@ class EncodingJob < ActiveRecord::Base
       self.status = "error"
       self.save
       
-      logger.error "Unable to transcode file #{self.key}: #{$!.class} - #{$!.message}"
+      logger.error "Unable to transcode file #{self.id}: #{$!.class} - #{$!.message}"
       
       raise
     end
