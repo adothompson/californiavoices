@@ -18,12 +18,11 @@ class EncodingWorker < BackgrounDRb::MetaWorker
     if encoding.encoding_profile.name == 'Original'
       # save and upload original
       save_and_upload_original(encoding)
-      return true
     else
       # do encoding and save/upload file
       # encoding.encode
-      return true
     end
+    return true
   end
   
   def save_and_upload_original(e)
@@ -54,6 +53,7 @@ class EncodingWorker < BackgrounDRb::MetaWorker
       logger.info "#{e.id} -- #{Time.now} -- Error - #{$!.class} - #{$!.message}"
       e.save!
     end
+    return true
   end
   
 end
