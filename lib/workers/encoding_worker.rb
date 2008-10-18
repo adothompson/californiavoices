@@ -20,7 +20,7 @@ class EncodingWorker < BackgrounDRb::MetaWorker
       save_and_upload_original(encoding)
     else
       # do encoding and save/upload file
-      # encoding.encode
+      encoding.encode
     end
     return true
   end
@@ -43,7 +43,7 @@ class EncodingWorker < BackgrounDRb::MetaWorker
       
       e.encoding_time = (Time.now - encoding_begun).to_i
       e.video_id = v.id
-      e.status = 'done'
+      e.status = 'success'
       e.save!
       
       logger.info "#{e.id} -- #{Time.now} -- encoding time: #{e.encoding_time}."

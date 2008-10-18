@@ -40,14 +40,14 @@ class Video < ActiveRecord::Base
   # Container => Mime type
   # AVI       => video/x-msvideo
   # WMV       => video/x-ms-wmv
-  # FLV       => video/x-flv OR flv-application/octet-stream?
+  # FLV       => video/x-flv OR flv-application/octet-stream OR application/octet-stream
   # MPG       => video/mpeg
   # MP3       => audio/mpeg
   # MOV       => video/quicktime
   # MP4       => video/mp4
   
   # attachment_fu params
-  has_attachment(:content_type => ['video/x-msvideo','video/x-ms-wmv','video/quicktime','video/mp4','video/x-flv','flv-application/octet-stream','video/mpeg','audio/mpeg'],
+  has_attachment(:content_type => ['video/x-msvideo','video/x-ms-wmv','video/quicktime','video/mp4','video/x-flv','application/octet-stream','video/mpeg','audio/mpeg'],
                  :storage => :s3,
                  :max_size => 300.megabytes
                  )
@@ -59,6 +59,25 @@ class Video < ActiveRecord::Base
   end
   
   def embed_js
+    return nil unless self.player == 'flash'
+    %(
+  	<div id="flash_container_#{self.key[0..4]}"><a href="http://www.macromedia.com/go/getflashplayer">Get the latest Flash Player</a> to watch this video.</div>
+  	<script type="text/javascript">
+      var flashvars = {};
+      
+      flashvars.file = "#{self.url}";
+      flashvars.image = "#{self.clipping.url(:screenshot)}";
+      flashvars.width = "#{self.width}";
+      flashvars.height = "#{self.height}";
+      flashvars.fullscreen = "true";
+      flashvars.controlbar = "over";
+      #{'flashvars.streamscript = "lighttpd";' if Panda::Config[:videos_store] == :filesystem }
+      var params = {wmode:"transparent",allowfullscreen:"true"};
+      var attributes = {};
+      attributes.align = "top";
+      swfobject.embedSWF("#{Store.url('player.swf')}", "flash_container_#{self.key[0..4]}", "#{self.width}", "#{self.height}", "9.0.115", "#{Store.url('expressInstall.swf')}", flashvars, params, attributes);
+  	</script>
+  	)
   end
   
 end
