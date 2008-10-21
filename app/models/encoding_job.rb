@@ -89,6 +89,7 @@ class EncodingJob < ActiveRecord::Base
       v.encoding_profile_id = self.encoding_profile_id
       v.story_id = self.upload.story_id
       v.update_attributes self.upload.read_metadata
+      v.player = self.encoding_profile.player || nil
       # save video or die
       v.save!
       

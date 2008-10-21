@@ -48,15 +48,7 @@ class Story < ActiveRecord::Base
   def to_param
     "#{self.id}-#{title.to_safe_uri}"
   end
-  
-#   def topic
-#     self.topic.name
-#   end
-  
-#   def region
-#     self.region.name
-#   end
-  
+    
   # comments
   has_many :comments, :as => :commentable, :order => "created_at asc"
   
@@ -69,5 +61,10 @@ class Story < ActiveRecord::Base
     arr
   end
 
+  # finders
+  
+  def flash_sd
+    self.videos.find(:first, :conditions => ['encoding_profile_id = ?', 3])
+  end
   
 end

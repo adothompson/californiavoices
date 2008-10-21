@@ -61,23 +61,16 @@ class Video < ActiveRecord::Base
   def embed_js
     return nil unless self.player == 'flash'
     %(
-  	<div id="flash_container_#{self.key[0..4]}"><a href="http://www.macromedia.com/go/getflashplayer">Get the latest Flash Player</a> to watch this video.</div>
+  	<div id="flash_container_#{self.id}"><a href="http://www.macromedia.com/go/getflashplayer">Get the latest Flash Player</a> to watch this video.</div>
   	<script type="text/javascript">
-      var flashvars = {};
-      
-      flashvars.file = "#{self.url}";
-      flashvars.image = "#{self.clipping.url(:screenshot)}";
-      flashvars.width = "#{self.width}";
-      flashvars.height = "#{self.height}";
-      flashvars.fullscreen = "true";
-      flashvars.controlbar = "over";
-      #{'flashvars.streamscript = "lighttpd";' if Panda::Config[:videos_store] == :filesystem }
-      var params = {wmode:"transparent",allowfullscreen:"true"};
-      var attributes = {};
-      attributes.align = "top";
-      swfobject.embedSWF("#{Store.url('player.swf')}", "flash_container_#{self.key[0..4]}", "#{self.width}", "#{self.height}", "9.0.115", "#{Store.url('expressInstall.swf')}", flashvars, params, attributes);
-  	</script>
+          var so = new SWFObject('/swf/player.swf','mpl','420','315','9');
+          so.addParam('wmode','transparent');
+          so.addParam('allowfullscreen','true');
+          so.addParam('flashvars','file=#{self.public_filename}&controlbar=over&logo=/images/cavoices-logo-sm.png&autostart=false');
+
+
+          so.write('flash_container_#{self.id}');
+        </script>
   	)
-  end
-  
+  end  
 end

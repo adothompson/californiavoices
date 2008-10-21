@@ -19,7 +19,7 @@
   <h3 class="underline">Downloads</h3>
   <ul>
     <% for video in @story.videos %>
-    <li>[<%= video.encoding_profile.name %>] <%= link_to truncate(video.filename, 30), video.public_filename %> (<%= (video.size.bytes)/1.megabyte %> MB)</li>
+    <li>[<%= video.encoding_profile.name %>] <%= link_to truncate(video.filename, 30), video.public_filename %> (<%= number_with_precision((video.size.bytes.to_f)/1.megabyte,1) %> MB)</li>
     <% end %>
   </ul>
 </div>
@@ -43,11 +43,9 @@
 
 
 <div class="white_box">
-  <div id="flashbanner">this will be replaced by the SWF.</div>
-  <script type="text/javascript">
-    var so = new SWFObject('/swf/player.swf','mpl','420','315','9');
-    so.addParam('allowfullscreen','true');
-    so. addParam('flashvars','file=http%3A%2F%2Fs3.amazonaws.com%3A%2F1gfstbc4spang8wk80r2.cavoices%2Fvideo_files%2F7%2Fflv-2710-giip-sos-sti-001.flv&controlbar=over&logo=/images/cavoices-logo-sm.png&autostart=false');
-    so.write('flashbanner');
-  </script>
+  
+  <%= 
+     @story.flash_sd.embed_js
+  %>
+
 </div>
