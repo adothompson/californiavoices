@@ -6,9 +6,8 @@ SITE_NAME = 'California Voices'
 SITE = RAILS_ENV == 'production' ? 'californiavoices.ucsc.edu' : 'localhost:3000'
 
 
-MAILER_TO_ADDRESS = 'info@californiavoices.org'
+MAILER_TO_ADDRESS = 'info@giip.org'
 MAILER_FROM_ADDRESS = 'The California Voices Team <info@californiavoices.org>'
-REGISTRATION_RECIPIENTS = %W(registration@californiavoices.org) #send an email to this list everytime someone signs up
-
+REGISTRATION_RECIPIENTS = %W(adam@giip.org) #send an email to this list everytime someone signs up
 
 YOUTUBE_BASE_URL = "http://gdata.youtube.com/feeds/api/videos/"

@@ -1,29 +1,13 @@
-How to get LovdByLess up and running
+How to get California Voices up and running:
 
-
-WINDOWS USERS READ THIS: http://www.gamutworks.net/blog/?p=17
-
-START BY MAKING SURE your ruby gems are version 1.2.0 or greater:
-* (sudo) gem update --system
-Then add the github repo to your gems:
-* gem sources -a http://gems.github.com
-
-
-    * Lovd runs on Ruby on Rails, so first you need to get rails running. Go download rails (http://rubyonrails.org/down) and follow it's instructions to get rails running.
+    * CalVoices runs on Ruby on Rails, so first you need to get rails running.
     * The directions in this README file assume some knowledge of rails, but I'll go through it a bit here first.
     * The first thing to do is install the ruby gems that are required. For each gem listed in the README, at the command line, do something like "gem install [gem name]" or "sudo gem install [gem name]".
-    * The next thing to do is set up your database (steps 1-4 in the README). Lovd is setup to use MySQL by default, so just follow the instructions in the README and configure the files for your computer.
-    * Skip step 5.
-    * Now setup global variable (site name and url and stuff) (steps 6-13) and change the (r)html and css to suit your taste.
-    * In dev mode, search (steps 14-16) should work right out of the box (assuming you install the gems). The search instructions are really for a production environment.
-    * Start lovd with the typical "./script/server" and point your browser to "http://localhost:3000".
-
-
-
-
+    * The next thing to do is set up your database (steps 1-4 in the README). CalVoices is setup to use MySQL by default, so just follow the instructions in the README and configure the files for your computer.
+    
 Instructions:
 
-Quick Setup (currently for non-Windows users only - due to ferret gem issues):
+Quick Setup:
 
   1. Edit config/database.yml.tmp to reflect the database names you would like to use.
   2. Edit config/environments/production.rb so asset_host reflects the name of the production asset server
@@ -45,21 +29,12 @@ Install the Required Gems:
 - rflickr
 - RedCloth
 - rmagick (will require ImageMagick, which is not a gem)
-- win32console (windows only)
 (The other gems are already provided in the vendor gems dir.)
 2. Run "rake gems:build" to build the gems that need builing
 
-
-TIPS:
-Installing ferret on Windows
-1. Running gem install ferret does not work. Instead, download the gem directly from http://rubyforge.org/frs/?group_id=1028
-2. Download file: ferret-0.11.6-mswin32.gem
-3. From the directory you downloaded the gem to: gem install ferret-0.11.6-mswin32.gem
-
 Installing ImageMagick and RMagick
 See these posts for tips:
-http://b.lesseverything.com/2007/9/26/installing-imagemagick-and-rmagick-on-mac-os-x
-http://www.randycullom.com/chatterbox/archives/2006/12/installing_imag.html
+http://dev.giip.ucsc.edu/wiki/calvoices/Rmagick
 
 Setup the databases:
 
@@ -90,16 +65,14 @@ Configure Ferret:
 15. Acts_s_ferret home page: http://projects.jkraemer.net/acts_as_ferret/wiki.
 16. We recommend using the drb server as described here: http://projects.jkraemer.net/acts_as_ferret/wiki/DrbServer.
 
-Start Lovd By Less:
+Start CalVoices:
 
-17. ./script/server
-18. Go to the home page http://localhost:3000
+17. ./script/server (not needed because of mod_rails)
+18. Go to the home page http://localhost:3000 
 19. Go to the signup page and create an account.
 20. Go into the database and turn the is_admin flag to true on your new account.
 
-
-
-About flickr integration
+About flickr integration:
 
 If you WANT to have flickr integration in your Lovd By Less project, follow these setup instructions:
 1. Go http://flickr.com/services/api/keys/apply/ to apply for a flickr api key.
