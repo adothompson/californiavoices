@@ -54,8 +54,11 @@ class Video < ActiveRecord::Base
   validates_as_attachment
 
   # Attr Helpers
+  # ============
   
   def embed_html
+    return nil unless self.player == 'flash'
+    %(<embed src="http://#{SITE}/swf/player.swf" width="420" height="315" allowfullscreen="true" allowscriptaccess="always" flashvars="&displayheight=420&file=#{self.public_filename}&width=420&height=315&logo=http://#{SITE}/images/cavoices-logo-sm.png" />)
   end
   
   def embed_js
@@ -63,12 +66,10 @@ class Video < ActiveRecord::Base
     %(
   	<div id="flash_container_#{self.id}"><a href="http://www.macromedia.com/go/getflashplayer">Get the latest Flash Player</a> to watch this video.</div>
   	<script type="text/javascript">
-          var so = new SWFObject('/swf/player.swf','mpl','420','315','9');
+          var so = new SWFObject('http://#{SITE}/swf/player.swf','flash_container_#{self.id}','420','315','9');
           so.addParam('wmode','transparent');
           so.addParam('allowfullscreen','true');
-          so.addParam('flashvars','file=#{self.public_filename}&controlbar=over&logo=/images/cavoices-logo-sm.png&autostart=false');
-
-
+          so.addParam('flashvars','file=#{self.public_filename}&controlbar=over&logo=http://#{SITE}/images/cavoices-logo-sm.png&autostart=false');
           so.write('flash_container_#{self.id}');
         </script>
   	)

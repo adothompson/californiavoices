@@ -491,3 +491,8 @@ div.fieldWithErrors label
   font-weight: bold;
   color: #f00;
 }
+
+/* image gallery - public profile */
+#photos img {
+    width: 100px;
+}

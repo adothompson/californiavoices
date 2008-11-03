@@ -6,12 +6,13 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :profiles, 
   :member=>{:delete_icon=>:post}, :collection=>{:search=>:get}, 
-  :has_many=>[:friends, :blogs, :photos, :comments, :feed_items, :messages]
+  :has_many=>[:friends, :photos, :comments, :feed_items, :messages] # remove :blogs
 
   map.resources :messages, :collection => {:sent => :get}
-  map.resources :blogs do |blog|
-    blog.resources :comments
-  end
+
+#   map.resources :blogs do |blog|
+#     blog.resources :comments
+#   end
   
 #   map.resources :forums, :collection => {:update_positions => :post} do |forum|
 #     forum.resources :topics, :controller => :forum_topics do |topic|

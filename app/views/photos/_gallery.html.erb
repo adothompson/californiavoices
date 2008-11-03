@@ -26,8 +26,7 @@
 <%- end -%>	
 
 <%- else -%>
-
-<div class="left" id="column_l">	
+<div class="white_box blue_top">	
   <h1><%= icon profile %> <%= "#{profile.f}'s Photos" %></h1>
 
   <div id="sub_nav">
@@ -43,17 +42,6 @@
 
   <div class="clear"></div>
 </div>
-
-<div class="right" id="column_r">
-  <% if me %>
-  <div class="right upload_form activity_box">
-    <%= render :partial => 'form' %>
-  </div>
-  <% end %>
-
-</div>
-
-
 
 <%- end -%>
 

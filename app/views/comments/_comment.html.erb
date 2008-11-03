@@ -10,7 +10,7 @@ c = comment.comment.dup.gsub(/\[youtube:+.+\]/, '')
 
 <div id="<%= comment.dom_id %>" class="comment_holder">
   <%= icon comment.profile, :small, :class => 'left avatar_on_comment' %> 
-  <div class="date_details_white">
+  <div class="date_details">
     <%= time_ago_in_words comment.created_at %> ago, <%= link_to h(comment.profile.f), comment.profile %> wrote: 
   </div>
   <div class="comment_message jstruncate">

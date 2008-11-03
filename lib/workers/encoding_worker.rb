@@ -18,6 +18,9 @@ class EncodingWorker < BackgrounDRb::MetaWorker
     if encoding.encoding_profile.name == 'Original'
       # save and upload original
       save_and_upload_original(encoding)
+      # encoding.save_and_upload_original
+      # encoding.get_and_save_clippings
+      # --- 5%, 15%, 25% ... 95%
     else
       # do encoding and save/upload file
       encoding.encode

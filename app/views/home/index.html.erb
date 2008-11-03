@@ -22,7 +22,7 @@
 
 <div class="white_box blue_top">
   <h2 class="underline">Newest Stories</h2>
-  <%# render :partial => 'stories/newest_story', :collection => new_stories %>
+  <%= render :partial => 'stories/newest_story', :collection => new_stories %>
   <br style="clear: both" />
 </div>
 
@@ -30,13 +30,6 @@
   <h2 class="underline">Newest Members</h2>
   <%= render :partial => 'profiles/newest_member', :collection => new_members %>
 <div class="clear"></div>
-</div>
-
-<div class="white_box blue_top">
-  <h2 class="underline">Tags</h2>
-  <div class="tag-cloud">
-    <%# render :partial => 'layouts/tag_cloud', :local => [@tags] %>
-  </div>
 </div>
 
 <div class="clear"></div>

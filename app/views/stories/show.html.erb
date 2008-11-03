@@ -11,7 +11,7 @@
   <span>Added:</span> <%= @story.created_at.to_date.to_s(:long) %> (<%= time_ago_in_words(@story.created_at) %> ago)<br />
   <span>Topic:</span> <%= link_to h(@story.topic_name), stories_path(:search => {:q => @story.topic_name}) %><br />
   <span>Region:</span> <%= link_to h(@story.region_name), stories_path(:search => {:q => @story.region_name}) %><br />
-  <div class="right"><%= icon @story.profile %> <%= @story.profile.f %></div>
+  <!-- <div class="right"><%= icon @story.profile %> <%= @story.profile.f %></div> -->
   <div class="clear"></div>
 </div>
 
@@ -19,23 +19,15 @@
   <h3 class="underline">Downloads</h3>
   <ul>
     <% for video in @story.videos %>
-    <li>[<%= video.encoding_profile.name %>] <%= link_to truncate(video.filename, 30), video.public_filename %> (<%= number_with_precision((video.size.bytes.to_f)/1.megabyte,1) %> MB)</li>
+      <li><%= link_to h(video.encoding_profile.name), video.public_filename %> (<%= number_with_precision((video.size.bytes.to_f)/1.megabyte,1) %> MB)</li>
     <% end %>
   </ul>
 </div>
 
 <div class="white_box">
-  video stills will go here...
-</div>
-
-<div class="tag-cloud white_box">
-  tags?
-</div>
-
-<div class="white_box">
-  <h3 class="underline">Embed this Video</h3>
+  <h3 class="underline">Embed HTML</h3>
   <p>
-    <input size="30" type="text" value="embed code coming..." />
+    <input size="30" type="text" value="<%=h @story.flash_sd.embed_html %>" />
   </p>
 </div>
 

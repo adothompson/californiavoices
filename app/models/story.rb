@@ -61,10 +61,19 @@ class Story < ActiveRecord::Base
     arr
   end
 
-  # finders
+  # finders and attr helpers
   
+  def flash_low
+    self.videos.find(:first, :conditions => ['encoding_profile_id = ?', 2])
+  end
+
   def flash_sd
-    self.videos.find(:first, :conditions => ['encoding_profile_id = ?', 3])
+    self.videos.find(:first, :conditions => ['encoding_profile_id = ?', 3]) || self.flash_low
+  end
+
+  def icon 
+    # get image clipping icon
+    "http://#{SITE}/images/video_icon_small.jpg"
   end
   
 end

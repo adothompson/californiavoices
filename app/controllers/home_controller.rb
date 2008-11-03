@@ -35,7 +35,8 @@ class HomeController < ApplicationController
   end
 
   def terms
-    render
+    render :layout => 'plain'
+    #render
   end
 
 
