@@ -5,7 +5,7 @@ class QueueWorker < BackgrounDRb::MetaWorker
     # this method is called, when worker is loaded for the first time
     
     # TODO: increase timer to several minutes (3-5?)
-    add_periodic_timer(30) { check_encoding_queue }
+    add_periodic_timer(300) { check_encoding_queue }
     
 #     while true do
 #       logger.info "going again"
