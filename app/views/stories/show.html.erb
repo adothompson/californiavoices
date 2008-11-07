@@ -36,8 +36,8 @@
 
 <div class="white_box">
   
-  <%= 
-     @story.flash_sd.embed_js
-  %>
+  <% if @story.flash_sd != nil
+       <%= @story.flash_sd.embed_js %>
+  <% end %>
 
 </div>
