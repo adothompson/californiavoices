@@ -5,18 +5,18 @@ class QueueWorker < BackgrounDRb::MetaWorker
     # this method is called, when worker is loaded for the first time
     
     # TODO: increase timer to several minutes (3-5?)
-    add_periodic_timer(300) { check_encoding_queue }
+#     add_periodic_timer(300) { check_encoding_queue }
     
-#     while true do
-#       logger.info "going again"
-#       check_encoding_queue
-#       sleep(10)
-#     end
+    while true do
+      logger.info "going again"
+      check_encoding_queue
+      sleep(300) 
+    end
     
   end
   
   def check_encoding_queue
-    logger.info "did we get to queue thing. #{EncodingJob.processing?} - #{EncodingJob.current_encoding}"
+    logger.info "-- #{Time.now} -- Check Queue: Processing? #{EncodingJob.processing?}"
 
     begin
       if EncodingJob.processing?
