@@ -1,8 +1,9 @@
-<div class="newest_story left" style="margin-right: 1em;">
-  <div style="border: 1px solid #333; padding: 2px;">
-    <div><%= link_to image_tag(newest_story.icon), newest_story %></div>
-  </div>
-  <div style="text-align: center; margin-top: .25em;">
-    <%= link_to h(newest_story.title), newest_story %>
+<div class="iconbox left">
+  <%= link_to image_tag(newest_story.icon), newest_story %>
+  <div class="hover">
+    <%= link_to image_tag(newest_story.icon), newest_story %>
+    <div class="text">
+      <span><%= link_to h(newest_story.title), newest_story %></span>
+    </div>
   </div>
 </div>  

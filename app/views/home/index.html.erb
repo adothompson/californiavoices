@@ -6,7 +6,6 @@
 <% content_for :side do %>
 <div class="blue_box">
   <h2 class="underline">Welcome to California Voices</h2>
-  <!--<img src="/images/take-one.png" alt="CA Voices: Take One" style="float: right;" />-->
   <p>California Voices is an after-school digital storytelling program designed to guide students to have a greater commitment to academic achievement, career goals and civic engagement, while preserving the legacy of elders who have made significant contributions to culture, community, and country.</p>
   <!--<p>Facilitators guide a group of 15-20 students, five hours per week in the art of finding compelling storytellers, conducting interviews, preparing research, scriptwriting, storyboarding, producing and editing video and music.</p>
   <p>At the conclusion of the school year, student teams have several well-crafted videos to present to their school and community, in addition to being included in the California Voices archive.</p>-->
@@ -22,14 +21,18 @@
 
 <div class="white_box blue_top">
   <h2 class="underline">Newest Stories</h2>
-  <%= render :partial => 'stories/newest_story', :collection => new_stories %>
-  <br style="clear: both" />
+  <div class="iconboxes">
+    <%= render :partial => 'stories/newest_story', :collection => new_stories %>
+  </div>
+  <div class="clear"></div>
 </div>
 
 <div class="blue_box">
   <h2 class="underline">Newest Members</h2>
-  <%= render :partial => 'profiles/newest_member', :collection => new_members %>
-<div class="clear"></div>
+  <div class="iconboxes">
+    <%= render :partial => 'profiles/newest_member', :collection => new_members %>
+  </div>
+  <div class="clear"></div>
 </div>
 
 <div class="clear"></div>

@@ -496,3 +496,52 @@ div.fieldWithErrors label
 #photos img {
     width: 100px;
 }
+
+/* ------- icons -------- */
+
+/* icon boxes */
+div.iconboxes {
+}
+div.iconboxes img {
+  border:1px solid #666;
+}
+div.iconboxes div.iconbox {
+  position: relative;
+  width: 52px; height: 52px;
+  float: right;
+  margin: 2px;
+}
+div.iconboxes div.iconbox.left {
+  float: left;
+}
+div.iconboxes div.hover {
+  display: none;
+}
+div.iconboxes div.iconbox:hover div.hover {
+  display: inline;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: white;
+  color: black;
+  z-index: 100;
+  width: 52px; height: 52px;
+}
+div.iconbox div.hover div.text {
+  position: absolute;
+  width: 20em;
+  right: 0px;
+  top: 52px
+}
+div.iconbox.left div.hover div.text {
+  left: 0px;
+}
+div.iconbox div.hover div.text span {
+  background: #fff;
+  border: 1px solid #666;
+  padding: 3px;
+}
+div.iconbox a {
+  text-decoration: none;
+  color: #000;
+}
