@@ -6,21 +6,6 @@ class ProfilesController < ApplicationController
   skip_filter :login_required, :only=>[:index, :feed, :search]
   
   def show
-    # TODO: create search for users last video and display on profile page
-    
-#     unless @profile.youtube_username.blank?
-#       begin
-#         client = YouTubeG::Client.new
-#         @video = client.videos_by(:user => @profile.youtube_username).videos.first
-#       rescue Exception, OpenURI::HTTPError
-#       end
-#     end
-    
-#     begin
-#       @flickr = @profile.flickr_username.blank? ? [] : flickr_images(flickr.people.findByUsername(@profile.flickr_username))
-#     rescue Exception, OpenURI::HTTPError
-#       @flickr = []
-#     end
 
     @comments = @profile.comments.paginate(:page => @page, :per_page => @per_page)
     

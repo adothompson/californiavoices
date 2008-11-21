@@ -8,7 +8,7 @@ module HomeHelper
     Comment.find(:all, :order => 'created_at desc', :limit => limit, :conditions => "commentable_type='Profile'")
   end
   
-  def new_members(limit = 12)
+  def new_members(limit = 14)
     Profile.find(:all, :limit => limit, :order => 'created_at DESC', :conditions=>"user_id is not null")
   end
   
@@ -16,8 +16,8 @@ module HomeHelper
     Story.find(:all, :limit => limit, :order => 'created_at DESC') # TODO: set condition for finished processing
   end
   
-  def recent_forum_posts(limit = 10)
-    ForumTopic.find(:all, :limit => limit, :order => 'forum_posts.created_at DESC', :include => [:forum, :posts])
-  end
+#   def recent_forum_posts(limit = 10)
+#     ForumTopic.find(:all, :limit => limit, :order => 'forum_posts.created_at DESC', :include => [:forum, :posts])
+#   end
   
 end

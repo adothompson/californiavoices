@@ -5,8 +5,6 @@ class Admin::UsersController < ApplicationController
     render
   end
   
-  
-  
   def update
     @profile = Profile.find(params[:id])
     respond_to do |wants|
@@ -23,19 +21,20 @@ class Admin::UsersController < ApplicationController
       end
     end
   end
-  
+
   private
   
   def allow_to
     super :admin, :all => true
   end
   
-  def search_results
-    if params[:search]
-      p = params[:search].dup
-    else
-      p = []
-    end
-    @results = Profile.search((p.delete(:q) || ''), p).paginate(:page => @page, :per_page => @per_page)
-  end
+   def search_results
+#      if params[:search]
+#        p = params[:search].dup
+#      else
+#        p = []
+#      end
+#      @results = Profile.search((p.delete(:q) || ''), p).paginate(:page => @page, :per_page => @per_page)
+     @results = Profile.find(:all).paginate(:page => @page, :per_page => @per_page)
+   end
 end

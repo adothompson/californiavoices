@@ -48,7 +48,7 @@
 	    <li><%= icon(@p, :small) unless @p.blank? %><strong>Hi, <%= @u.login %>!</strong> <%= link_to '(logout)', logout_path %></li>
 	  </ul>
           <% end %>
-	  <%= render :partial => "shared/#{params[:controller].match(/admin/) ? 'admin_search' : 'search'}" %>
+	  <%= render :partial => "shared/search" %>
 	  </div>
 	</div> <!-- end misc_menu -->
       </div>
