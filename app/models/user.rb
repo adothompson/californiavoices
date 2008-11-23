@@ -44,8 +44,6 @@ class User < ActiveRecord::Base
   validates_less_reverse_captcha
   
 
-
-
   def before_create
     p = Profile.find_by_email @email
     return true if p.blank?
@@ -73,10 +71,6 @@ class User < ActiveRecord::Base
   def can_mail? user
     can_send_messages? && profile.is_active?
   end
-
-
-
-
 
   # Authenticates a user by their login name and unencrypted password.
   # Returns the user or nil.

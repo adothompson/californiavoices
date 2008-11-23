@@ -9,7 +9,6 @@ class AccountsController < ApplicationController
     @user = User.new
     return unless request.post?
     
-    
     #plays double duty login/forgot (due to the ajax nature of the login/forgot form)
     if params[:user][:email] && params[:user][:email].size > 0
       u = Profile.find_by_email(params[:user][:email]).user rescue nil
@@ -31,10 +30,6 @@ class AccountsController < ApplicationController
       end
     end
   end
-  
-  
-  
-  
 
   def logout
     cookies[:auth_token] = {:expires => Time.now-1.day, :value => "" }
@@ -43,31 +38,24 @@ class AccountsController < ApplicationController
     flash[:notice] = "You have been logged out."
     redirect_to '/'
   end
-  
-  
-  
-
-
 
   def signup
     redirect_back_or_default(home_path) and return if @u
     @user = User.new
     return unless request.post?
-    
       
     u = User.new
     u.terms_of_service = params[:user][:terms_of_service]
     u.login = params[:user][:login]
     u.password = params[:user][:password]
     u.password_confirmation = params[:user][:password_confirmation]
-    u.email = params[:user][:email]
+    u.email = params[:user][:email].strip
     u.less_value_for_text_input = params[:user][:less_value_for_text_input]
     
     @u = u
     if u.save
       self.user = u
-    
-      
+          
       remember_me if params[:remember_me] == "1"
       flash[:notice] = "Thanks for signing up!"
       AuthMailer.deliver_registration(:subject=>"new #{SITE_NAME} registration", :body => "username = '#{@u.login}', email = '#{@u.profile.email}'", :recipients=>REGISTRATION_RECIPIENTS)
