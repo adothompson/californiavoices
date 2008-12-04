@@ -30,7 +30,7 @@ Rails::Initializer.run do |config|
   config.gem 'mocha', :version=>"0.5.6"
   config.gem 'redgreen', :version=>"1.2.2" unless ENV['TM_MODE']
   config.gem 'gcnovus-avatar', :version=>"0.0.7", :lib => 'avatar'
-  config.gem 'RedCloth', :version=>"4.1.0", :lib => 'redcloth'
+  config.gem 'RedCloth', :version=>"4.1.1", :lib => 'redcloth'
   # TODO: for backgroundrb - maybe doesn't need to be included here?
   #config.gem 'chronic', :version => "0.2.3"
   #config.gem 'packet', :version => "0.1.12"
