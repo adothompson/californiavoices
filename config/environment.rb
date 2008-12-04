@@ -26,7 +26,7 @@ Rails::Initializer.run do |config|
   config.gem 'uuidtools', :version=> '1.0.3'
   config.gem 'acts_as_ferret', :version=> '0.4.3'
   config.gem 'ferret', :version=> '0.11.6' # not included in build
-  config.gem 'hpricot', :version=>"0.6.161" # not inlcuded in build
+  config.gem 'hpricot', :version=>"0.6.164" # not inlcuded in build
   config.gem 'mocha', :version=>"0.5.6"
   config.gem 'redgreen', :version=>"1.2.2" unless ENV['TM_MODE']
   #config.gem 'gcnovus-avatar', :version=>"0.0.7", :lib => 'avatar'
