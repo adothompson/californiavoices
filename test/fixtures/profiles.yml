@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20081003212204
+# Schema version: 20081124005536
 #
 # Table name: profiles
 #
@@ -15,7 +15,7 @@
 #  gtalk_name       :string(255)   
 #  ichat_name       :string(255)   
 #  icon             :string(255)   
-#  location         :string(255)   
+#  location_cache   :string(255)   
 #  created_at       :datetime      
 #  updated_at       :datetime      
 #  email            :string(255)   
@@ -24,6 +24,7 @@
 #  flickr_username  :string(255)   
 #  last_activity_at :datetime      
 #  time_zone        :string(255)   default("UTC")
+#  location_id      :integer(4)    
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

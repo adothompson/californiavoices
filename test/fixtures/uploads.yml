@@ -1,15 +1,26 @@
 # == Schema Information
-# Schema version: 20081003212204
+# Schema version: 20081124005536
 #
 # Table name: uploads
 #
-#  id           :integer(4)    not null, primary key
-#  story_id     :integer(4)    
-#  size         :integer(4)    
-#  filename     :string(255)   
-#  content_type :string(255)   
-#  created_at   :datetime      
-#  updated_at   :datetime      
+#  id                :integer(4)    not null, primary key
+#  story_id          :integer(4)    
+#  size              :integer(4)    
+#  width             :integer(4)    
+#  height            :integer(4)    
+#  duration          :integer(4)    
+#  video_bitrate     :integer(4)    
+#  audio_bitrate     :integer(4)    
+#  audio_sample_rate :integer(4)    
+#  audio_channels    :integer(4)    
+#  fps               :integer(4)    
+#  filename          :string(255)   
+#  content_type      :string(255)   
+#  container         :string(255)   
+#  video_codec       :string(255)   
+#  audio_codec       :string(255)   
+#  created_at        :datetime      
+#  updated_at        :datetime      
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

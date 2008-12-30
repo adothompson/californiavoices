@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20081003212204
+# Schema version: 20081124005536
 #
 # Table name: profiles
 #
@@ -15,7 +15,7 @@
 #  gtalk_name       :string(255)   
 #  ichat_name       :string(255)   
 #  icon             :string(255)   
-#  location         :string(255)   
+#  location_cache   :string(255)   
 #  created_at       :datetime      
 #  updated_at       :datetime      
 #  email            :string(255)   
@@ -24,6 +24,7 @@
 #  flickr_username  :string(255)   
 #  last_activity_at :datetime      
 #  time_zone        :string(255)   default("UTC")
+#  location_id      :integer(4)    
 #
 
 class Profile < ActiveRecord::Base
@@ -51,6 +52,7 @@ class Profile < ActiveRecord::Base
   has_many :received_messages, :class_name => 'Message', :order => 'created_at desc', :foreign_key => 'receiver_id'
   has_many :unread_messages,   :class_name => 'Message', :conditions => {:read => false}, :foreign_key => 'receiver_id'
 
+
   # Friends
   has_many :friendships, :class_name  => "Friend", :foreign_key => 'inviter_id', :conditions => "status = #{Friend::ACCEPTED}"
   has_many :follower_friends, :class_name => "Friend", :foreign_key => "invited_id", :conditions => "status = #{Friend::PENDING}"
@@ -68,11 +70,22 @@ class Profile < ActiveRecord::Base
   
   # Photos
   has_many :photos, :order => 'created_at DESC'
+
   
   #Forums
-  has_many :forum_posts, :foreign_key => 'owner_id', :dependent => :destroy
+  # has_many :forum_posts, :foreign_key => 'owner_id', :dependent => :destroy
+
+
+  # Location, Location, Location
+  belongs_to :location
+  Profile::NOWHERE = 'Nowhere'
+  def location_cache
+    return Profile::NOWHERE if attributes['location_cache'].blank?
+    attributes['location_cache']
+  end
   
-  acts_as_ferret :fields => [ :location, :f, :about_me ], :remote=>true
+
+  acts_as_ferret :fields => [ :location_cache, :f, :about_me ], :remote=>true
   
   file_column :icon, :magick => {
     :versions => { 
@@ -82,9 +95,8 @@ class Profile < ActiveRecord::Base
     }
   }
   
-  cattr_accessor :featured_profile
-  @@featured_profile = {:date=>Date.today-4, :profile=>nil}
-  Profile::NOWHERE = 'Nowhere'
+#   cattr_accessor :featured_profile
+#   @@featured_profile = {:date=>Date.today-4, :profile=>nil}
 
   def to_param
     "#{self.id}-#{f.to_safe_uri}"
@@ -101,41 +113,28 @@ class Profile < ActiveRecord::Base
        ((self.first_name || '') + ' ' + (self.last_name || '')).strip
      end
   end
-  
-  def location
-    return Profile::NOWHERE if attributes['location'].blank?
-    attributes['location']
-  end
-  
+
   def full_name
     f
   end
-  
-  
-  def self.featured
-    find_options = {
-      :include => :user,
-      :conditions => ["is_active = ? and about_me IS NOT NULL and user_id is not null", true],
-    }
-#    find(:first, find_options.merge(:offset => rand( count(find_options) - 1)))
-    find(:first, find_options.merge(:offset => rand(count(find_options)).floor)) 
-  end  
+    
+#   def self.featured
+#     find_options = {
+#       :include => :user,
+#       :conditions => ["is_active = ? and about_me IS NOT NULL and user_id is not null", true],
+#     }
+#     find(:first, find_options.merge(:offset => rand(count(find_options)).floor)) 
+#   end  
   
   def no_data?
     (created_at <=> updated_at) == 0
   end
   
-  
-  
-  
   def has_wall_with profile
     return false if profile.blank?
     !Comment.between_profiles(self, profile).empty?
   end
-  
-  
-  
-  
+
   
   def website= val
     write_attribute(:website, fix_http(val))
@@ -146,10 +145,6 @@ class Profile < ActiveRecord::Base
   def flickr= val
     write_attribute(:flickr, fix_http(val))
   end
-  
-  
-  
-  
   
   
   # Friend Methods
@@ -166,21 +161,9 @@ class Profile < ActiveRecord::Base
   end
   
   
-  
-  
-  
-  
-  
-  
-  
   def can_send_messages
     user.can_send_messages
   end
-  
-  
-  
-  
-  
   
   
   def self.search query = '', options = {}
@@ -192,9 +175,9 @@ class Profile < ActiveRecord::Base
     arr
   end
   
-  
-  
+
   protected
+
   def fix_http str
     return '' if str.blank?
     str.starts_with?('http') ? str : "http://#{str}"

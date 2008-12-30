@@ -10,7 +10,7 @@ module ProfilesHelper
   end
   
   def location_link profile = @p
-    return profile.location if profile.location == Profile::NOWHERE
-    link_to h(profile.location), search_profiles_path.add_param('search[location]' => profile.location)
+    return profile.location_cache if profile.location_cache == Profile::NOWHERE
+    link_to h(profile.location_cache), search_profiles_path.add_param('search[location_cache]' => profile.location_cache)
   end
 end
