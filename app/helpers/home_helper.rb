@@ -9,7 +9,7 @@ module HomeHelper
   end
   
   def new_members(limit = 14)
-    Profile.find(:all, :limit => limit, :order => 'created_at DESC', :conditions=>"user_id is not null")
+    Profile.find(:all, :limit => limit, :order => 'created_at DESC', :conditions=>"user_id is not null AND is_active = TRUE")
   end
   
   def new_stories(limit = 12)
