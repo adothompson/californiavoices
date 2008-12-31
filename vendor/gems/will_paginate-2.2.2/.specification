@@ -9,7 +9,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2008-04-20 00:00:00 -04:00
+date: 2008-04-19 21:00:00 -07:00
 default_executable: 
 dependencies: []
 
@@ -77,6 +77,8 @@ rdoc_options: []
 
 require_paths: 
 - bin
+- bin
+- bin
 - lib
 required_ruby_version: !ruby/object:Gem::Requirement 
   requirements: 
@@ -93,7 +95,7 @@ required_rubygems_version: !ruby/object:Gem::Requirement
 requirements: []
 
 rubyforge_project: will-paginate
-rubygems_version: 1.1.0
+rubygems_version: 1.2.0
 signing_key: 
 specification_version: 2
 summary: Most awesome pagination solution for Rails

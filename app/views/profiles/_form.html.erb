@@ -54,11 +54,8 @@
     </div> <!-- end Change Password -->
 
     <div id="delete_account">
-      <form>
-	<%= link_to_remote 'Delete my user account and all my data.', :url=>profile_path(@p), :method=>:delete, :confirm=>DELETE_CONFIRM  %>
-      </form>
+      <%= link_to_remote 'Delete my user account and all my data.', :url=>profile_path(@p), :method=>:delete, :confirm=>DELETE_CONFIRM  %>
     </div>
-
   </div>
 
 <% end %>
