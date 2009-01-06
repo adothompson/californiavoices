@@ -21,12 +21,14 @@ class AccountsController < ApplicationController
       params[:login] ||= params[:user][:login] if params[:user]
       params[:password] ||= params[:user][:password] if params[:user]
       self.user = User.authenticate(params[:login], params[:password])
-      if @u
+      if @u && @u.active
         remember_me if params[:user][:remember_me] == "1"
         flash[:notice] = "Hello #{@u.f}"
         redirect_back_or_default profile_url(@u.profile)
       else
-        flash.now[:error] = "Uh-oh, login didn't work. Do you have caps locks on? Try it again."
+        cookies[:auth_token] = {:expires => Time.now-1.day, :value => "" }
+        session[:user] = nil
+        flash.now[:error] = "Login didn't work. All users must be APPROVED before logging in.  If your are already approved check your login or password and try again. "
       end
     end
   end
@@ -43,7 +45,7 @@ class AccountsController < ApplicationController
     redirect_back_or_default(home_path) and return if @u
     @user = User.new
     return unless request.post?
-      
+    
     u = User.new
     u.terms_of_service = params[:user][:terms_of_service]
     u.login = params[:user][:login]
@@ -53,13 +55,19 @@ class AccountsController < ApplicationController
     u.less_value_for_text_input = params[:user][:less_value_for_text_input]
     
     @u = u
+    
     if u.save
       self.user = u
-          
-      remember_me if params[:remember_me] == "1"
-      flash[:notice] = "Thanks for signing up!"
+      
+      #remember_me if params[:remember_me] == "1"
+      flash[:notice] = "Thanks for signing up!  You will recieve an email when your account is APPROVED."
       AuthMailer.deliver_registration(:subject=>"new #{SITE_NAME} registration", :body => "username = '#{@u.login}', email = '#{@u.profile.email}'", :recipients=>REGISTRATION_RECIPIENTS)
-      redirect_to profile_url(@u.profile)
+      # don't allow new user to be auto logged in
+      cookies[:auth_token] = {:expires => Time.now-1.day, :value => "" }
+      session[:user] = nil
+      @u = nil
+
+      redirect_to home_url  #profile_url(@u.profile)
     else  
       @user = @u
       params[:user][:password] = params[:user][:password_confirmation] = ''
@@ -69,14 +77,7 @@ class AccountsController < ApplicationController
   end
   
   
-  
-  
-  
-  
-  
-  
-
-protected
+  protected
 
   def remember_me
     self.user.remember_me
@@ -92,12 +93,6 @@ protected
   end
   
 end
-
-
-
-
-
-
 
 
 class AuthMailer < ActionMailer::Base

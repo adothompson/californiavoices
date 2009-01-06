@@ -23,7 +23,7 @@
     <%= check_box_tag :user_terms_of_service, 1, params[:terms_of_service], :class => 'checkbox', :name => 'user[terms_of_service]' %>
   </div>
 
-  <%= f.wrap(:remember_me, :for => :remember_me){ check_box_tag :remember_me, 1, params[:remember_me], :class=>"checkbox"} %>
+  <%# f.wrap(:remember_me, :for => :remember_me){ check_box_tag :remember_me, 1, params[:remember_me], :class=>"checkbox"} %>
   <div class="button">
     <%= f.submit 'Sign-up Now', :class => 'button' %>
   </div>

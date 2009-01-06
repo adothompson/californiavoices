@@ -26,14 +26,8 @@ class ApplicationController < ActionController::Base
     Time.zone = @p.time_zone if @p && @p.time_zone
     @p.update_attribute :last_activity_at, Time.now if @p
   end
-  
-  
-  
-  
-  
-  
-  
-  
+    
+=begin  
   helper_method :flickr, :flickr_images
   # API objects that get built once per request
   def flickr(user_name = nil, tags = nil )
@@ -51,7 +45,7 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-  
+=end
   
   protected
   
@@ -61,7 +55,6 @@ class ApplicationController < ActionController::Base
     @level << [level, args]    
   end
    
-  
   
   def check_permissions
     logger.debug "IN check_permissions :: @level => #{@level.inspect}"

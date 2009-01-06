@@ -12,8 +12,7 @@ module ApplicationHelper
     options = args.extract_options!
     remote_form_for name, *(args << options.merge(:builder=>LessFormBuilder)), &block
   end
-  
-  
+
 
   def display_standard_flashes(message = 'There were some problems with your submission:')
     if flash[:notice]

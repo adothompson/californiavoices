@@ -64,8 +64,6 @@ class ProfilesController < ApplicationController
     end      
   end
 
-
-
   def destroy
     respond_to do |wants|
      @user.destroy
@@ -79,9 +77,6 @@ class ProfilesController < ApplicationController
       end
     end
   end
-
-
-
 
 
   private

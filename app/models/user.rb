@@ -49,12 +49,11 @@ class User < ActiveRecord::Base
     return true if p.blank?
     errors.add(:email, 'address has already been taken.') and return false unless p.user.blank?
   end
-
   
   def after_create
     p = Profile.find_or_create_by_email @email
     raise 'User found when should be nil' unless p.user.blank?
-    p.is_active=true
+    p.is_active=false # true - needs approval from admin first
     p.user_id = id
     p.save
     AccountMailer.deliver_signup self.reload
@@ -62,6 +61,10 @@ class User < ActiveRecord::Base
   
   def after_destroy
     profile.update_attributes :is_active=>false
+  end
+
+  def active
+    self.profile.is_active if self.profile
   end
 
   def f
