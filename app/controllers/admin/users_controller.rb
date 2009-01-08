@@ -16,6 +16,11 @@ class Admin::UsersController < ApplicationController
             @profile.toggle! :is_active
             page << "message('User has been marked as #{@profile.is_active ? 'active' : 'inactive'}');"
             page.replace_html @profile.dom_id('link'), (@profile.is_active ? 'deactivate' : 'activate')
+            
+            # if profile becomes active send the activation email
+            if @profile.is_active
+              AccountMailer.deliver_activation @profile.user
+            end
           end
         end
       end
