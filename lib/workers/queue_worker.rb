@@ -35,10 +35,11 @@ class QueueWorker < BackgrounDRb::MetaWorker
       else
         # if no processing is happening
         # -- find the next job, change it's status to processing
-        logger.info "-- #{Time.now} -- nothing in processing queue."
+        logger.info "-- #{Time.now} -- nothing currently processing."
         
         # set encoding to 'processing'
         if e = EncodingJob.next_job
+          logger.info "-- #{Time.now} -- starting another process."
           e.status = 'processing'
           e.save!
           

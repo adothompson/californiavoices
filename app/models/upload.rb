@@ -68,7 +68,7 @@ class Upload < ActiveRecord::Base
   end
   
   def read_and_save_metadata
-    logger.info "\n\n# #{self.id} #CAVOICES - reading metadata for #{self.public_filename}.\n\n"
+    logger.info "\n\n-- #{self.id} -- CAVOICES - reading metadata for #{self.public_filename}.\n\n"
     
     # check if public_filename is exists else use temp_path
     

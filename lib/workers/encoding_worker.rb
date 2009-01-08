@@ -30,13 +30,16 @@ class EncodingWorker < BackgrounDRb::MetaWorker
   
   def save_and_upload_original(e)
     begin
+      logger.info "#{e.id} -- #{Time.now} -- encoding #{e.encoding_profile.name} really begun."
       encoding_begun = Time.now
       
       # encoding metadata and profile
       v = Video.new(:uploaded_data => ActionController::TestUploadedFile.new(e.upload.public_filename, e.upload.content_type))
       v.encoding_profile_id = e.encoding_profile_id
       v.story_id = e.upload.story_id
+      logger.info "#{e.id} -- #{Time.now} -- encoding #{e.encoding_profile.name} - created video."
       v.update_attributes e.upload.read_metadata
+      logger.info "#{e.id} -- #{Time.now} -- encoding #{e.encoding_profile.name} - set video attributes."
       # save video or die
       v.save!
       
