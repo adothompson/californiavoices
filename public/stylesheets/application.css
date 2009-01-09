@@ -123,10 +123,18 @@ h2 a			{text-transform: capitalize; font-weight: normal; font-size: 11px;}
 .comment_holder		{padding-top: 10px;}
 .comments 			{padding: 0px 10px 0px 10px;}
 
-.pagination a,
-.pagination .current{padding: 2px; background: #222; margin: 0 2px;}
-.pagination select	{padding: 0px; font-size: 10px; margin: 0 5px;}
-.pagination			{padding: 10px 0;}
+/* .pagination a, */
+/* .pagination .current{padding: 2px; background: #222; margin: 0 2px;} */
+/* .pagination select	{padding: 0px; font-size: 10px; margin: 0 5px;} */
+/* .pagination			{padding: 10px 0;} */
+
+.pagination {
+        font-size: 11px;
+        line-height: 16px;
+        clear: both;
+        padding: 0 0 10px 0;
+        }
+
 
 #messages td, 
 #messages th	{padding: 3px;}

@@ -15,6 +15,8 @@
   <div>
     <h2 class="underline">Stories</h2>
 
+    <%= will_paginate @stories %>
+
     <% @stories.each do |r| %>
     <div class="search_row left text_c" >
       <div><%= link_to image_tag(r.icon), r %></div>
@@ -23,6 +25,7 @@
     <% end %>
 
     <%= will_paginate @stories %>
+
   </div>
   <div class="clear"></div>
 </div>
