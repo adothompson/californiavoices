@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   def pagination_defaults
     @page = (params[:page] || 1).to_i
     @page = 1 if @page < 1
-    @per_page = (params[:per_page] || (RAILS_ENV=='test' ? 1 : 40)).to_i
+    @per_page = (params[:per_page] || (RAILS_ENV=='test' ? 1 : 20)).to_i
   end
   
   def set_profile
