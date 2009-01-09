@@ -7,7 +7,7 @@ class StoriesController < ApplicationController
     
   def index
     # render :action => :search
-    @stories = Story.find(:all, :order_by => 'updated_at DESC').paginate(:page => @page, :per_page => @per_page)
+    @stories = Story.find(:all, :order => 'updated_at DESC').paginate(:page => @page, :per_page => @per_page)
   end
   
   def search
