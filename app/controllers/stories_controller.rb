@@ -6,7 +6,8 @@ class StoriesController < ApplicationController
   skip_filter :login_required, :only=>[:index, :search, :show]
     
   def index
-    render :action => :search
+    # render :action => :search
+    @stories = Story.find(:all).paginate(:page => @page, :per_page => @per_page)
   end
   
   def search
@@ -15,6 +16,9 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.find params[:id]
+    @profile = @story.profile
+    @comments = @story.comments.paginate(:page => @page, :per_page => @per_page)
+    
   end
 
   def new

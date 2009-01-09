@@ -43,5 +43,7 @@
   <% else %>
     Video is currently processing.  Check back later.
   <% end %>
+  
+  <%= render :partial => 'comments/list', :locals => {:with_form => true} %>	
 
 </div>

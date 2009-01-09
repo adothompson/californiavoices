@@ -12,7 +12,7 @@ module HomeHelper
     Profile.find(:all, :limit => limit, :order => 'created_at DESC', :conditions=>"user_id is not null AND is_active = TRUE")
   end
   
-  def new_stories(limit = 12)
+  def new_stories(limit = 14)
     Story.find(:all, :limit => limit, :order => 'created_at DESC') # TODO: set condition for finished processing
   end
   
