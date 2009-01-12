@@ -17,7 +17,7 @@ class StoriesController < ApplicationController
   def show
     @story = Story.find params[:id]
     @profile = @story.profile
-    @comments = @story.comments.paginate(:page => @page, :per_page => @per_page)
+    # @comments = @story.comments.paginate(:page => @page, :per_page => @per_page)
     
   end
 
