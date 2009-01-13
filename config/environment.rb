@@ -5,7 +5,9 @@ RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
-  
+
+  config.load_paths += %w(discussion).collect{|dir|"#{RAILS_ROOT}/app/models/#{dir}"}
+
   # Cookie sessions (limit = 4K)
   # WARNING: You MUST generate a new secret (use "rake secret") and add it below!
   config.action_controller.session = {
@@ -23,7 +25,7 @@ Rails::Initializer.run do |config|
   # Gem dependencies
   config.gem 'will_paginate', :version => '~> 2.2.2'
   config.gem 'colored', :version=> '1.1'
-  config.gem 'youtube-g', :version=> '0.4.9.9', :lib=>'youtube_g'
+  # config.gem 'youtube-g', :version=> '0.4.9.9', :lib=>'youtube_g'
   config.gem 'uuidtools', :version=> '1.0.4'
   config.gem 'acts_as_ferret', :version=> '0.4.3'
   config.gem 'ferret', :version=> '0.11.6' # not included in build
