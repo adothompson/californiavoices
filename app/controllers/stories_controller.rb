@@ -1,7 +1,7 @@
 class StoriesController < ApplicationController
   include ApplicationHelper
-  before_filter :setup, :except => [:index, :search]
-  skip_filter :login_required, :only=>[:index, :search, :show]
+  before_filter :setup, :only => [:show]
+  skip_filter :login_required, :only=>[:index, :show]
   append_before_filter :load_posts, :only => [:show]
 
 
@@ -69,7 +69,7 @@ class StoriesController < ApplicationController
   
   def allow_to
     super :owner, :all => true
-    super :all, :only => [:show, :index, :search]
+    super :all, :only => [:show, :index]
   end
   
   def setup
