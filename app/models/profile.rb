@@ -87,7 +87,7 @@ class Profile < ActiveRecord::Base
   end
   
 
-  acts_as_ferret :fields => [ :location_cache, :f, :about_me ], :remote=>true
+  acts_as_ferret :fields => [ :location_name, :f, :about_me ], :remote=>true
   
   file_column :icon, :magick => {
     :versions => { 
