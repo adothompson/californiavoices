@@ -1,3 +1,21 @@
+# == Schema Information
+# Schema version: 20090115003246
+#
+# Table name: discussions
+#
+#  id               :integer(4)    not null, primary key
+#  posts_count      :integer(4)    default(0)
+#  replied_at       :datetime      
+#  replied_by_id    :integer(4)    
+#  last_post_id     :integer(4)    
+#  page_id          :integer(4)    
+#  discussable_id   :integer(4)    
+#  discussable_type :string(255)   
+#  story_id         :integer(4)    
+#  created_at       :datetime      
+#  updated_at       :datetime      
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 # one:

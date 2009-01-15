@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20081124005536
+# Schema version: 20090115003246
 #
 # Table name: videos
 #
@@ -9,7 +9,6 @@
 #  width               :integer(4)    
 #  height              :integer(4)    
 #  duration            :integer(4)    
-#  encoding_time       :integer(4)    
 #  video_bitrate       :integer(4)    
 #  audio_bitrate       :integer(4)    
 #  audio_sample_rate   :integer(4)    

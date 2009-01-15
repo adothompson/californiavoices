@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20081124005536
+# Schema version: 20090115003246
 #
 # Table name: profiles
 #
@@ -15,7 +15,7 @@
 #  gtalk_name       :string(255)   
 #  ichat_name       :string(255)   
 #  icon             :string(255)   
-#  location_cache   :string(255)   
+#  location_name    :string(255)   
 #  created_at       :datetime      
 #  updated_at       :datetime      
 #  email            :string(255)   
@@ -23,7 +23,7 @@
 #  youtube_username :string(255)   
 #  flickr_username  :string(255)   
 #  last_activity_at :datetime      
-#  time_zone        :string(255)   default("UTC")
+#  time_zone        :string(255)   default("Pacific Time (US & Canada)")
 #  location_id      :integer(4)    
 #
 
