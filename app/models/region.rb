@@ -14,6 +14,8 @@
 class Region < ActiveRecord::Base
   
 #  has_many :stories
+
+  has_many :locations
   
   # to_param url
   def to_param

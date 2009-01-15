@@ -79,7 +79,9 @@
 
       <%= p.text_field :first_name %>   
       <%= p.text_field :last_name %>
-      <%= p.text_field :location_cache %>    
+      <%# p.text_field :location_name %> 
+      <% locations = Location.find(:all) %>
+      <div class='row clear'><%= p.label :location_id %></div> <%= p.collection_select(:location_id, locations, :id, :name, {:prompt => true}) %>
       <%= p.front :timezone %>
         <%= time_zone_select :profile, :time_zone, ActiveSupport::TimeZone.us_zones %>
       <%= p.back %>

@@ -6,6 +6,7 @@ class Location < ActiveRecord::Base
 
   # relationships
   has_many :profiles, :dependent => :nullify
+  belongs_to :region
 
 =begin
   # constants for use in creation of location when needed.

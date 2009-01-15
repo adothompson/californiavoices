@@ -15,7 +15,7 @@
 
 class Story < ActiveRecord::Base
 
-  #TODO: add acts_as_taggable??
+  #TODO: add acts_as_taggable?? or acts_as_taggable_on
   
   # basic relationships
   has_many :videos
@@ -23,6 +23,9 @@ class Story < ActiveRecord::Base
   belongs_to :profile
   belongs_to :topic
   belongs_to :region
+
+  # discussion relationship
+  has_one :discussion, :as => :discussable
   
   def topic_name
     self.topic.name

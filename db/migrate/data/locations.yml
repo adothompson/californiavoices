@@ -1,0 +1,151 @@
+one:
+  id: 1
+  name: Mariposa County
+  region_id: 1
+
+two:
+  id: 2
+  name: Sunnyside HS
+  region_id: 1
+
+three:
+  id: 3
+  name: El Capitan MS
+  region_id: 1
+
+four: 
+  id: 4
+  name: Tehipite MS
+  region_id: 1
+  
+five:
+  id: 5
+  name: Sutter MS
+  region_id: 1
+  
+six: 
+  id: 6
+  name: McCabe MS
+  region_id: 1
+
+seven:
+  id: 7
+  name: Raisin City Elementary and MS
+  region_id: 1
+
+eight: 
+  id: 8
+  name: Carver MS
+  region_id: 1
+
+nine:
+  id: 9
+  name: General Grant MS
+  region_id: 1
+
+ten:
+  id: 10
+  name: Bullard HS
+  region_id: 1
+
+eleven:
+  id: 11
+  name: Albert Einstein MS
+  region_id: 2
+
+twelve:
+  id: 12
+  name: California MS
+  region_id: 2
+
+thirteen:
+  id: 13
+  name: Fern Bacon MS
+  region_id: 2
+
+fourteen:
+  id: 14
+  name: John H. Still MS
+  region_id: 2
+
+fifteen:
+  id: 15
+  name: Kit Carson MS
+  region_id: 2
+
+sixteen:
+  id: 16
+  name: Rosa Parks MS
+  region_id: 2
+
+seventeen:
+  id: 17
+  name: Sam Brannan MS 
+  region_id: 2
+
+eighteen:
+  id: 18
+  name: Will C. Wood MS
+  region_id: 2
+
+nineteen:
+  id: 19
+  name: American Legion HS
+  region_id: 2
+
+twenty:
+  id: 20
+  name: George Washington Carver HS
+  region_id: 2
+
+twentyone:
+  id: 21
+  name: Genesis HS
+  region_id: 2
+
+twentytwo:
+  id: 22
+  name: John F Kennedy HS 
+  region_id: 2
+
+twentythree:
+  id: 23
+  name: C.K. McClatchy HS
+  region_id: 2
+
+twentyfour:
+  id: 24
+  name: Hiram Johnson HS
+  region_id: 2
+
+twentyfive:
+  id: 25
+  name: Galt HS
+  region_id: 2
+
+twentysix:
+  id: 26
+  name: Valley HS
+  region_id: 2
+
+cmcfresno:
+  id: 27
+  name: CMC Fresno Staff
+  region_id: 1
+
+cmcsac:
+  id: 28
+  name: CMC Sacramento Staff
+  region_id: 2
+
+otherfresno:
+  id: 29
+  name: Other
+  region_id: 1
+
+othersac:
+  id: 30
+  name: Other
+  region_id: 2
+
+

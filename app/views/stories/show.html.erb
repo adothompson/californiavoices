@@ -11,7 +11,7 @@
   <span>Added:</span> <%= @story.created_at.to_date.to_s(:long) %> (<%= time_ago_in_words(@story.created_at) %> ago)<br />
   <span>Topic:</span> <%= link_to h(@story.topic_name), stories_path(:search => {:q => @story.topic_name}) %><br />
   <span>Region:</span> <%= link_to h(@story.region_name), stories_path(:search => {:q => @story.region_name}) %><br />
-  <!-- <div class="right"><%= icon @story.profile %> <%= @story.profile.f %></div> -->
+  <!-- <div class="right"><%# icon @story.profile %> <%# @story.profile.f %></div> -->
   <div class="clear"></div>
 </div>
 
@@ -44,6 +44,12 @@
     Video is currently processing.  Check back later.
   <% end %>
   
-  <%# render :partial => 'comments/list', :locals => {:with_form => true} %>	
-
 </div>
+
+<% unless @u.nil? || @p.blank? %>
+  <div class="white_box blue_top">
+  	
+    <%= render :partial => 'posts/list' %>
+    
+  </div>
+<% end %>

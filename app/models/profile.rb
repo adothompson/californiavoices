@@ -70,18 +70,20 @@ class Profile < ActiveRecord::Base
   
   # Photos
   has_many :photos, :order => 'created_at DESC'
-
   
+
   #Forums
   # has_many :forum_posts, :foreign_key => 'owner_id', :dependent => :destroy
 
+  # setting of sort caches
+  # before_save :set_sort_caches
 
   # Location, Location, Location
   belongs_to :location
   Profile::NOWHERE = 'Nowhere'
-  def location_cache
-    return Profile::NOWHERE if attributes['location_cache'].blank?
-    attributes['location_cache']
+  def location_name
+    return Profile::NOWHERE unless self.location
+    self.location.name
   end
   
 
@@ -182,5 +184,11 @@ class Profile < ActiveRecord::Base
     return '' if str.blank?
     str.starts_with?('http') ? str : "http://#{str}"
   end
-  
+
+  private
+
+#   def set_sort_caches
+#     self.location_name = location.name.blank? ? '' : location.name
+#   end
+
 end

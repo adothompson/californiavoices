@@ -40,5 +40,5 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :regions
   
   map.resources :stories
-    
+  map.resources :posts  
 end
