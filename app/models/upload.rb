@@ -32,8 +32,8 @@ class Upload < ActiveRecord::Base
   
   # relationships
   belongs_to :story
-  has_many :encoding_profiles
-  has_many :encoding_jobs
+#  has_many :encoding_profiles
+  has_many :encoding_jobs, :dependent => :destroy
   
   # mime types:
   # Container => Mime type

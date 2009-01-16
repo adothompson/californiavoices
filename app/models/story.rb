@@ -18,14 +18,14 @@ class Story < ActiveRecord::Base
   #TODO: add acts_as_taggable?? or acts_as_taggable_on
   
   # basic relationships
-  has_many :videos
-  has_many :uploads
+  has_many :videos, :dependent => :destroy
+  has_many :uploads, :dependent => :destroy
   belongs_to :profile
   belongs_to :topic
   belongs_to :region
 
   # discussion relationship
-  has_one :discussion, :as => :discussable
+  has_one :discussion, :as => :discussable, :dependent => :destroy
   
   def topic_name
     self.topic.name
