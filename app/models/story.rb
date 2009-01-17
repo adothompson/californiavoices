@@ -20,6 +20,7 @@ class Story < ActiveRecord::Base
   # basic relationships
   has_many :videos, :dependent => :destroy
   has_many :uploads, :dependent => :destroy
+  has_many :clippings, :dependent => :destroy, :order => 'preferred DESC'
   belongs_to :profile
   belongs_to :topic
   belongs_to :region
