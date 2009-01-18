@@ -1,0 +1,12 @@
+<% content_for :side do %>
+
+<%= render :partial => 'admin/shared/admin_menu' %>
+
+<% end %>
+
+<div class="white_box blue_top">
+  <h1>Edit Story: <%= h @story.title %></h2>
+
+  <%= render :partial => 'admin/stories/form', :locals => {:upload => false} %>
+
+</div>

@@ -10,7 +10,7 @@
 <div>
   <%= error_messages_for :story %>
 
-  <% less_form_for @story, :html=>{:multipart=>true, :class=>"box no_top"} do |f| %>
+  <% less_form_for @story, :url => admin_story_path(@story), :html=>{:multipart=>true, :class=>"box no_top"} do |f| %>
 
   <h2 class="underline">Step 1: Describe Your Story</h2>
 

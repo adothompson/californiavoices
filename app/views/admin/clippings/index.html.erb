@@ -1,0 +1,29 @@
+<% content_for :side do %>
+
+<%= render :partial => 'admin/shared/admin_menu' %>
+
+<% end %>
+
+<div class="white_box blue_top">
+  <h1>Clippings for <%= h @story.title %></h1>
+
+  <% for clip in @story.clippings %>
+    <div>
+      <%= link_to 'Set Default', admin_story_clipping_path(@story, clip), :method => :put %>
+      <%= image_tag clip.public_filename(:large) %>
+      <%= link_to 'Delete', admin_story_clipping_path(@story, clip), :method => :delete %>
+    </div>
+  <% end %>
+
+  <h2>Add New Clipping</h2>
+  <%= error_messages_for :clipping %>
+  <% form_for(:clipping, :url => admin_story_clippings_path(@story), :html => { :multipart => true }) do |f| %>
+  <p>Select a video clipping to upload</p>
+  <p><%= f.file_field 'uploaded_data' %></p>
+  <p>
+    <%= submit_tag 'Upload Clipping' %>
+  </p>
+<% end %>
+
+
+</div>

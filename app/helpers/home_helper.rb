@@ -13,7 +13,7 @@ module HomeHelper
   end
   
   def new_stories(limit = 14)
-    Story.find(:all, :limit => limit, :order => 'created_at DESC') # TODO: set condition for finished processing
+    Story.find(:all, :limit => limit, :order => 'created_at DESC', :conditions => ['active = true']) # TODO: set condition for finished processing
   end
   
 #   def recent_forum_posts(limit = 10)

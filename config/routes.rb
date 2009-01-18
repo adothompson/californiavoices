@@ -2,6 +2,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.namespace :admin do |a|
     a.resources :users, :collection => {:search => :post}
+    a.resources :stories, :has_many => [:clippings], :member => {:activate => :put}
   end
 
   map.resources :profiles, 
