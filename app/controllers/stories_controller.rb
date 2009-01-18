@@ -34,6 +34,9 @@ class StoriesController < ApplicationController
         wants.xml  { render :xml      => @story,
           :status   => :created,
           :location => @story }
+        AuthMailer.deliver_upload(:subject=>"new #{SITE_NAME} story upload",
+                                  :body => "title = '#{@story.title}', description = '#{@story.description}'",
+                                  :recipients=>REGISTRATION_RECIPIENTS)
       else
         flash[:error] = 'Error: your story could not be saved.'
         wants.html { render :action => :new }
@@ -74,6 +77,12 @@ class StoriesController < ApplicationController
   
   def setup
     @story = Story.find(params[:id]) || nil
-  end
-  
+  end 
 end
+
+class AuthMailer < ActionMailer::Base
+  def upload(options)
+    self.generic_mailer(options)
+  end
+end
+ 
