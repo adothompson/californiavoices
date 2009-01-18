@@ -1,8 +1,7 @@
 class Admin::StoriesController < ApplicationController
-  before_filter :search_results, :only => [:index]
 
   def index
-    render
+    @results = Story.find(:all, :order => 'active ASC, created_at DESC').paginate(:page => @page, :per_page => @per_page)
   end
 
   def edit
@@ -38,10 +37,6 @@ class Admin::StoriesController < ApplicationController
 
   def allow_to
     super :admin, :all => true
-  end
-
-  def search_results
-    @results = Story.find(:all).paginate(:page => @page, :per_page => @per_page)
   end
   
 end
