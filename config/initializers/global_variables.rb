@@ -11,3 +11,5 @@ MAILER_FROM_ADDRESS = 'The California Voices Team <info@californiavoices.org>'
 REGISTRATION_RECIPIENTS = %W(info@californiavoices.org) #send an email to this list everytime someone signs up
 
 # YOUTUBE_BASE_URL = "http://gdata.youtube.com/feeds/api/videos/"
+
+# Bad Words for Filtering

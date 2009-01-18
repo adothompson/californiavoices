@@ -40,6 +40,8 @@ class Profile < ActiveRecord::Base
   validates_format_of :email, :with => /^([^@\s]{1}+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message=>'does not look like an email address.'
   validates_length_of :email, :within => 3..100
   validates_uniqueness_of :email, :case_sensitive => false
+
+  profanity_filter! :about_me
   
   # Feeds
   has_many :feeds

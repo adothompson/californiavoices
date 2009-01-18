@@ -16,6 +16,8 @@
 class Story < ActiveRecord::Base
 
   #TODO: add acts_as_taggable?? or acts_as_taggable_on
+
+  profanity_filter! :title, :description
   
   # basic relationships
   has_many :videos, :dependent => :destroy

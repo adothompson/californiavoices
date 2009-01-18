@@ -11,9 +11,10 @@ class Post < ActiveRecord::Base
   ## attributes
   ##
 
+  profanity_filter! :body
   format_attribute :body
   validates_presence_of :discussion, :user, :body  
-
+  
   ##
   ## methods
   ##

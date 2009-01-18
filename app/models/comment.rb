@@ -17,6 +17,7 @@
 class Comment < ActiveRecord::Base
   
   validates_presence_of :comment, :profile
+  profanity_filter! :comment
   attr_immutable :id, :profile_id, :commentable_id, :commentable_type
   
   belongs_to :commentable, :polymorphic => true
