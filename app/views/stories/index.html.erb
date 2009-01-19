@@ -19,7 +19,7 @@
 
     <% @stories.each do |r| %>
     <div class="search_row left text_c" >
-      <div><%= link_to image_tag(r.icon), r %></div>
+      <div><%= clipping(r, :tiny) %></div>
       <div><%= link_to h(r.title), r %></div>
     </div>
     <% end %>
