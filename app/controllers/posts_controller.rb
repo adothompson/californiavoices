@@ -34,6 +34,7 @@ class PostsController < ApplicationController
   end
  
   def edit
+    render
   end
   
   def save
@@ -44,39 +45,12 @@ class PostsController < ApplicationController
       return(render :action => 'destroy')
     end
   end
+
+  private
+
+  def allow_to
+    super :owner, :all => true
+    super :user, :only => [:create]
+  end
   
-#   def twinkle   
-#     if rating = @post.ratings.find_by_user_id(current_user.id)
-#       rating.update_attribute(:rating, 1)
-#     else
-#       rating = @post.ratings.create(:user_id => current_user.id, :rating => 1)
-#     end
-
-#     # this should be in an observer, but oddly it doesn't work there.
-#     TwinkledActivity.create!(
-#       :user => @post.user, :twinkler => current_user, 
-#       :post => {:id => @post.id, :snippet => @post.body[0..30]}
-#     )
-#   end
-
-#   def untwinkle
-#     if rating = @post.ratings.find_by_user_id(current_user.id)
-#       rating.destroy
-#     end
-#   end
-
-  protected
-    
-#   def authorized?
-#     @post = Post.find(params[:id]) if params[:id]
-#     return true unless @post
-
-#     if %w[twinkle untwinkle].include? params[:action]
-#       return current_user.may?(:comment, @post.discussion.page)
-#     else
-#       return @post.editable_by?(current_user)
-#     end
-#   end
-
-
 end
