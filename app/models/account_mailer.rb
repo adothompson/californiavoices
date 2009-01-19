@@ -9,6 +9,15 @@ class AccountMailer < ActionMailer::Base
     @headers        = {}
   end
   
+  def activation(user)
+    @subject        = "Account Activation info from #{SITE_NAME}"
+    @recipients     = user.profile.email
+    @body['user']   = user
+    @from           = MAILER_FROM_ADDRESS
+    @sent_on        = Time.new
+    @headers        = {}
+  end
+  
 
   def forgot_password(email, name, login, password)
     @subject        = "Password reset from #{SITE_NAME}"

@@ -14,9 +14,15 @@ class Admin::UsersController < ApplicationController
             page << "message('You cannot deactivate yourself!');"
           else
             @profile.toggle! :is_active
+
+            # if profile becomes active send the activation email
+            if @profile.is_active
+              AccountMailer.deliver_activation @profile.user
+            end
             
             page << "message('User has been marked as #{@profile.is_active ? 'active' : 'inactive'}');"
             page.replace_html @profile.dom_id('link'), (@profile.is_active ? 'deactivate' : 'activate')
+            
           end
         end
       end
