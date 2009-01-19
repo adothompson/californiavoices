@@ -6,7 +6,7 @@ class StoriesController < ApplicationController
 
 
   def index
-    @stories = Story.find(:all, :order => 'updated_at DESC', :conditions => ['active = true']).paginate(:page => @page, :per_page => @per_page)
+    @stories = Story.find(:all, :order => 'created_at DESC', :conditions => ['active = true']).paginate(:page => @page, :per_page => @per_page)
   end
   
   def show
