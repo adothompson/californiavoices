@@ -61,7 +61,7 @@ class StoriesController < ApplicationController
   def load_posts
     @discussion ||= (@story.discussion ||= Discussion.new)
 
-    @posts = Post.paginate(:page => @page, :per_page => @per_page, :order => "created_at ASC", :include => :ratings)
+    @posts = @discussion.posts.paginate(:page => @page, :per_page => @per_page, :order => "created_at ASC", :include => :ratings)
     @post = Post.new
     @show_reply = !@posts.empty? if @show_reply == nil
   end
@@ -72,6 +72,7 @@ class StoriesController < ApplicationController
   
   def allow_to
     super :owner, :all => true
+    super :user, :only => [:show, :index, :new, :create]
     super :all, :only => [:show, :index]
   end
   
