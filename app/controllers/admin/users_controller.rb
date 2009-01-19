@@ -14,13 +14,9 @@ class Admin::UsersController < ApplicationController
             page << "message('You cannot deactivate yourself!');"
           else
             @profile.toggle! :is_active
+            
             page << "message('User has been marked as #{@profile.is_active ? 'active' : 'inactive'}');"
             page.replace_html @profile.dom_id('link'), (@profile.is_active ? 'deactivate' : 'activate')
-            
-            # if profile becomes active send the activation email
-            if @profile.is_active
-              AccountMailer.deliver_activation @profile.user
-            end
           end
         end
       end
@@ -49,12 +45,6 @@ class Admin::UsersController < ApplicationController
   end
   
   def search_results
-    #      if params[:search]
-    #        p = params[:search].dup
-    #      else
-    #        p = []
-    #      end
-    #      @results = Profile.search((p.delete(:q) || ''), p).paginate(:page => @page, :per_page => @per_page)
     @results = Profile.find(:all).paginate(:page => @page, :per_page => @per_page)
   end
 end
