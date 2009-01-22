@@ -50,12 +50,6 @@ class StoriesController < ApplicationController
     render
   end
 
-  def update
-  end
-
-  def destroy
-  end
-
   protected
 
   def load_posts
@@ -71,8 +65,11 @@ class StoriesController < ApplicationController
   # TODO : change to fit story searching and ownership
   
   def allow_to
+    # owner of story can do anything? editing?
     super :owner, :all => true
+    # approved users can create new stories
     super :user, :only => [:show, :index, :new, :create]
+    # everybody can list and watch
     super :all, :only => [:show, :index]
   end
   
