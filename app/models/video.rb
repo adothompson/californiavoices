@@ -59,15 +59,17 @@ class Video < ActiveRecord::Base
     return nil unless self.player == 'flash'
     %(<embed src="http://#{SITE}/swf/player.swf" width="420" height="315" allowfullscreen="true" allowscriptaccess="always" flashvars="&displayheight=420&file=#{self.public_filename}&width=420&height=315&logo=http://#{SITE}/images/cavoices-logo-sm.png" />)
   end
-  
+
+  # TODO: image overlay for preview
+  # ie &image=#{self.story.preview_image ? self.story.preview_image.public_filename(:preview) : ''}
   def embed_js
     return nil unless self.player == 'flash'
     %(
   	<div id="flash_container_#{self.id}"><a href="http://www.macromedia.com/go/getflashplayer">Get the latest Flash Player</a> to watch this video.</div>
   	<script type="text/javascript">
           var so = new SWFObject('http://#{SITE}/swf/player.swf','flash_container_#{self.id}','420','315','9');
-          so.addParam('wmode','transparent');
           so.addParam('allowfullscreen','true');
+          so.addParam('wmode','transparent');
           so.addParam('flashvars','file=#{self.public_filename}&controlbar=over&logo=http://#{SITE}/images/cavoices-logo-sm.png&autostart=false');
           so.write('flash_container_#{self.id}');
         </script>

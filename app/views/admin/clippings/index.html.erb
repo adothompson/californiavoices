@@ -9,9 +9,11 @@
 
   <% for clip in @story.clippings %>
     <div>
+      <% if clip.valid? %>
       <%= link_to 'Set Default', admin_story_clipping_path(@story, clip), :method => :put %>
       <%= image_tag clip.public_filename(:large) %>
       <%= link_to 'Delete', admin_story_clipping_path(@story, clip), :method => :delete %>
+      <% end %>
     </div>
   <% end %>
 

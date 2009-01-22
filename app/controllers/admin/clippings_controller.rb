@@ -46,8 +46,8 @@ class Admin::ClippingsController < ApplicationController
         wants.xml { head :created, :location => admin_story_clippings_path(@story) }
       else
         flash[:error] = 'Clipping could NOT be created.'
-        format.html { render :action => 'index' }
-        format.xml { render :xml => @clip.errors.to_xml }
+        wants.html { render :action => 'index' }
+        wants.xml { render :xml => @clip.errors.to_xml }
       end
     end
   rescue ActiveRecord::RecordInvalid

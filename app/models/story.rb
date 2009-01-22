@@ -68,6 +68,10 @@ class Story < ActiveRecord::Base
   end
 
   # finders and attr helpers
+
+  def preview_image
+    self.clippings.first || false
+  end
   
   def flash_low
     self.videos.find(:first, :conditions => ['encoding_profile_id = ?', 2])

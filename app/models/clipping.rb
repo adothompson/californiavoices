@@ -4,8 +4,8 @@ class Clipping < ActiveRecord::Base
   
   has_attachment(:content_type => :image,
                  :storage => :s3,
-                 :max_size => 1.megabyte,
-                 :thumbnails => { :full => '320x240>', :large => [128,128], :medium => [96,96], :small => [64,64], :tiny => [48,48] },
+                 :max_size => 3.megabytes,
+                 :thumbnails => { :preview => '420x315!', :full => '320x240!', :large => [128,128], :medium => [96,96], :small => [64,64], :tiny => [48,48] },
                  :processor => 'Rmagick')
   validates_as_attachment
 
