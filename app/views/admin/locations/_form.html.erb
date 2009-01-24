@@ -13,7 +13,7 @@
   <%= f.text_field :street %>
   <%= f.text_field :city %>
   <div class="row clear">
-    <%= f.label :state %> <%= f.collection_select :state, STATES_SELECT_COLLECTION, :label, :value, {:prompt => true} %>
+    <%= f.label :state %> <%= f.collection_select :state, STATES_SELECT_COLLECTION, :value, :label, {:prompt => true} %>
     <div class="clear"></div>
   </div>
   <%= f.text_field :zip_code %>
