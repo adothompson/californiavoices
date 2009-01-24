@@ -1,0 +1,21 @@
+<% content_for :side do %>
+
+<%= render :partial => 'admin/shared/admin_menu' %>
+
+<% end %>
+
+<div class="white_box blue_top">
+    <h1>Stories</h2>
+
+    <%= will_paginate @results %>
+    <% @results.each do |r| %>
+    <div class="<%= cycle('odd','even') %> search_row">
+      <div class="left"><%# icon?? %></div>
+      <div><%= link_to h(r.name), "#" %></div>
+      <div><%= link_to 'edit details', edit_admin_location_path(r) %></div>
+      <div class="clear"></div>
+    </div>
+    <% end %>
+    <div class="clear"></div>
+    <%= will_paginate @results %>
+</div>

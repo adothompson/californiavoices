@@ -1,0 +1,31 @@
+<%
+  #locals
+  regions ||= Region.find(:all)
+%>
+
+
+<div>
+  <%= error_messages_for :location %>
+
+  <% less_form_for @location, :url => admin_location_path(@location), :html=>{:multipart=>true, :class=>"box no_top"} do |f| %>
+
+  <%= f.text_field :name %>
+  <%= f.text_field :street %>
+  <%= f.text_field :city %>
+  <div class="row clear">
+    <%= f.label :state %> <%= f.collection_select :state, STATES_SELECT_COLLECTION, :la, :value, {:prompt => true} %>
+    <div class="clear"></div>
+  </div>
+  <%= f.text_field :zip_code %>
+  <div class="row clear">
+    <%= f.label :region_id %> <%= f.collection_select :region_id, regions, :id, :name, {:prompt => true} %>
+    <div class="clear"></div>
+  </div>
+
+  <div class="row button">
+    <%= f.submit 'Save', :class => 'button' %>
+  </div>
+
+</div>
+
+<% end %>
