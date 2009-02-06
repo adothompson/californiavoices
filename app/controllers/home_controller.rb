@@ -50,15 +50,6 @@ end
 
 
 
-
-
-
-
-
-
-
-
-
 class HomeMailer < ActionMailer::Base
   def mail(options)
     self.generic_mailer(options)

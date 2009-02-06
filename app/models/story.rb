@@ -37,10 +37,7 @@ class Story < ActiveRecord::Base
   def region_name
     self.region.name
   end
-  
-  # TODO: add tags to search
-  acts_as_ferret :fields => [ :title, :description, :topic_name, :region_name ], :remote=>true
-  
+    
   # validations
   validates_presence_of :title, :description, :topic_id, :region_id, :profile_id
 
