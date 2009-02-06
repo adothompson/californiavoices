@@ -52,5 +52,11 @@ class Admin::UsersController < ApplicationController
   
   def search_results
     @results = Profile.find(:all).paginate(:page => @page, :per_page => @per_page)
+#     if params[:search]
+#       p = params[:search].dup
+#     else
+#       p = []
+#     end
+#     @results = Profile.search(p.delete(:q) || '')
   end
 end

@@ -100,6 +100,6 @@ class ProfilesController < ApplicationController
     else
       p = []
     end
-    @results = Profile.search((p.delete(:q) || ''), p).paginate(:page => @page, :per_page => @per_page)
+    @results = Profile.search(p.delete(:q) || '')
   end
 end

@@ -88,8 +88,13 @@ class Profile < ActiveRecord::Base
     self.location.name
   end
   
+  # acts_as_ferret :fields => [ :location_name, :f, :about_me ], :remote=>true
 
-  acts_as_ferret :fields => [ :location_name, :f, :about_me ], :remote=>true
+  define_index do
+    indexes location, about_me, first_name, last_name
+    indexes user.login, :as => :login
+    set_property :min_prefix_len => 3, :morphology => false
+  end
   
   file_column :icon, :magick => {
     :versions => { 
@@ -170,16 +175,16 @@ class Profile < ActiveRecord::Base
   end
   
   
-  def self.search query = '', options = {}
-    query ||= ''
-    q = '*' + query.gsub(/[^\w\s-]/, '').gsub(' ', '* *') + '*'
-    options.each {|key, value| q += " #{key}:#{value}"}
-    arr = find_by_contents q, :limit=>:all
-    logger.debug arr.inspect
-    arr
-  end
-  
+#   def self.search query = '', options = {}
+#     query ||= ''
+#     q = '*' + query.gsub(/[^\w\s-]/, '').gsub(' ', '* *') + '*'
+#     options.each {|key, value| q += " #{key}:#{value}"}
+#     arr = find_by_contents q, :limit=>:all
+#     logger.debug arr.inspect
+#     arr
+#   end
 
+  
   protected
 
   def fix_http str

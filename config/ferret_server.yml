@@ -1,5 +1,0 @@
-development:
-  port: 10005
-production:
-  port: 11050
-  pid_file: log/ferret.pid

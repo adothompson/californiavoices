@@ -2,6 +2,7 @@
 db/*.db
 db/*.sqlite3
 db/schema.rb
+db/sphinx/development
 log/*.log
 log/*.pid
 log/*.out
@@ -10,6 +11,7 @@ config/database.yml
 config/amazon_s3.yml
 config/backgroundrb.yml
 index
+config/*.sphinx.conf
 public/system
 public/javascripts/less_routes.js
 test/public/system
