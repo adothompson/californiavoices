@@ -1,7 +1,7 @@
 class StoriesController < ApplicationController
   include ApplicationHelper
   before_filter :setup, :only => [:show]
-  skip_filter :login_required, :only=>[:index, :show]
+  skip_filter :login_required, :only=>[:index, :show, :search]
   append_before_filter :load_posts, :only => [:show]
 
 
