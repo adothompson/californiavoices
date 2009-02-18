@@ -37,10 +37,9 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   # stories and videos
-
-  map.resources :topics
-  map.resources :regions
+  map.resources :topics, :has_many => [:stories]
+  map.resources :regions, :has_many => [:stories]
   
-  map.resources :stories
+  map.resources :stories # , :has_one => [:region, :topic]
   map.resources :posts  
 end

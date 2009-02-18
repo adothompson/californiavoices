@@ -13,8 +13,7 @@
 
 class Region < ActiveRecord::Base
   
-#  has_many :stories
-
+  has_many :stories
   has_many :locations
   
   # to_param url

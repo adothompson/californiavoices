@@ -14,7 +14,7 @@
 
 class Topic < ActiveRecord::Base
 
-#  has_many :stories
+  has_many :stories
   
   # to_param url
   def to_param
