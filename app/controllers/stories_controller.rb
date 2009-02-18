@@ -19,7 +19,7 @@ class StoriesController < ApplicationController
   end
 
   def search
-    @stories = Story.search params[:search], :conditions => {:active => true}
+    @stories = Story.search params[:search], :conditions => {:active => true}, :page => @page, :per_page => @per_page
     render :action => 'index'
   end
   
