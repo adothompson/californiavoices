@@ -82,9 +82,9 @@ class StoriesController < ApplicationController
     # owner of story can do anything? editing?
     super :owner, :all => true
     # approved users can create new stories
-    super :user, :only => [:show, :index, :new, :create]
+    super :user, :only => [:show, :index, :search, :new, :create]
     # everybody can list and watch
-    super :all, :only => [:show, :index]
+    super :all, :only => [:show, :index, :search]
   end
   
   def setup
