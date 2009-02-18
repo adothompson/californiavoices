@@ -55,13 +55,15 @@ class Story < ActiveRecord::Base
   # comments
   has_many :comments, :as => :commentable, :order => "created_at asc"
   
-  def self.search query = '', options = {}
-    query ||= ''
-    q = '*' + query.gsub(/[^\w\s-]/, '').gsub(' ', '* *') + '*'
-    options.each {|key, value| q += " #{key}:#{value}"}
-    arr = find_by_contents q, :limit=>:all
-    logger.debug arr.inspect
-    arr
+  # sphinx search
+  define_index do
+    indexes title, description
+    indexes topic.name, :as => :topic
+    indexes region.name, :as => :region
+    indexes discussion.posts.body, :as => :post_body
+
+    has active, created_at
+    #set_property :min_prefix_len => 3, :morphology => false
   end
 
   # finders and attr helpers
@@ -76,11 +78,6 @@ class Story < ActiveRecord::Base
 
   def flash_sd
     self.videos.find(:first, :conditions => ['encoding_profile_id = ?', 3]) || self.flash_low
-  end
-
-  def icon 
-    # get image clipping icon
-    "http://#{SITE}/images/video_icon_small.jpg"
   end
   
 end

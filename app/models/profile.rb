@@ -90,11 +90,11 @@ class Profile < ActiveRecord::Base
   
   # acts_as_ferret :fields => [ :location_name, :f, :about_me ], :remote=>true
 
-  define_index do
-    indexes location, about_me, first_name, last_name
-    indexes user.login, :as => :login
-    set_property :min_prefix_len => 3, :morphology => false
-  end
+#   define_index do
+#     indexes location, about_me, first_name, last_name
+#     indexes user.login, :as => :login
+#     set_property :min_prefix_len => 3, :morphology => false
+#   end
   
   file_column :icon, :magick => {
     :versions => { 

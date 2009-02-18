@@ -7,8 +7,8 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.resources :profiles, 
-  :member=>{:delete_icon=>:post}, :collection=>{:search=>:get}, 
-  :has_many=>[:friends, :photos, :comments, :feed_items, :messages] # remove :blogs
+  :member=>{:delete_icon=>:post},
+  :has_many=>[:friends, :photos, :comments, :feed_items, :messages] # remove :blogs # no searching profiles :collection=>{:search=>:get}, 
 
   map.resources :messages, :collection => {:sent => :get}
 
@@ -40,6 +40,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :topics, :has_many => [:stories]
   map.resources :regions, :has_many => [:stories]
   
-  map.resources :stories # , :has_one => [:region, :topic]
+  map.resources :stories, :collection => {:search => :get} # , :has_one => [:region, :topic]
   map.resources :posts  
 end

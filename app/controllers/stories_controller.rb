@@ -8,7 +8,7 @@ class StoriesController < ApplicationController
   def index
     @topic = Topic.find params[:topic_id] rescue false
     @region = Region.find params[:region_id] rescue false
-    
+     
     if @topic
       @stories = @topic.stories.find(:all, :order => 'created_at DESC', :conditions => ['active = true']).paginate(:page => @page, :per_page => @per_page)
     elsif @region
@@ -16,6 +16,11 @@ class StoriesController < ApplicationController
     else  
       @stories = Story.find(:all, :order => 'created_at DESC', :conditions => ['active = true']).paginate(:page => @page, :per_page => @per_page)
     end
+  end
+
+  def search
+    @stories = Story.search params[:search], :conditions => {:active => true}
+    render :action => 'index'
   end
   
   def show
