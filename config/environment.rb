@@ -31,7 +31,7 @@ Rails::Initializer.run do |config|
   config.gem 'mocha', :version=> '0.9.3'
   config.gem 'redgreen', :version=>"1.2.2" unless ENV['TM_MODE']
   config.gem 'gcnovus-avatar', :version=>"0.0.7", :lib => 'avatar'
-  config.gem 'RedCloth', :version=>"4.1.1", :lib => 'redcloth'
+  config.gem 'RedCloth', :version=>"4.1.9", :lib => 'redcloth'
   # amazon web services
   config.gem 'aws-s3', :lib => 'aws/s3'
 end
