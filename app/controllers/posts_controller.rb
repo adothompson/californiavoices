@@ -22,10 +22,10 @@ class PostsController < ApplicationController
     rescue ActiveRecord::RecordInvalid
       msg = @post.errors.full_messages.to_s
     end
-    flash[:bad_reply] = msg
+    flash[:error] = msg
     respond_to do |wants|
       wants.html {
-        redirect_to page_url(@page, :anchor => 'reply-form')
+        redirect_to story_url(@story)
       }
       wants.xml {
         render :xml => msg, :status => 400
