@@ -27,7 +27,7 @@ Rails::Initializer.run do |config|
   config.gem 'colored', :version=> '1.1'
   # config.gem 'youtube-g', :version=> '0.4.9.9', :lib=>'youtube_g'
   config.gem 'uuidtools', :version=> '1.0.4'
-  config.gem 'hpricot', :version=>"0.6.164" # not inlcuded in build
+  config.gem 'hpricot', :version=>"0.7" # not inlcuded in build
   config.gem 'mocha', :version=> '0.9.3'
   config.gem 'redgreen', :version=>"1.2.2" unless ENV['TM_MODE']
   config.gem 'gcnovus-avatar', :version=>"0.0.7", :lib => 'avatar'
