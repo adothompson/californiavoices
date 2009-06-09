@@ -1,15 +1,6 @@
 require 'spec/spec_helper'
 
 describe ThinkingSphinx::Index do
-  describe "generated sql_query" do
-    it "should include explicit groupings if requested" do
-      @index = ThinkingSphinx::Index.new(Person)
-      
-      @index.groupings << "custom_sql"
-      @index.to_riddle_for_core(0, 0).sql_query.should match(/GROUP BY.+custom_sql/)
-    end
-  end
-  
   describe "prefix_fields method" do
     before :each do
       @index = ThinkingSphinx::Index.new(Person)
@@ -18,7 +9,7 @@ describe ThinkingSphinx::Index do
       @field_b = ThinkingSphinx::Field.stub_instance(:prefixes => false)
       @field_c = ThinkingSphinx::Field.stub_instance(:prefixes => true)
       
-      @index.fields = [@field_a, @field_b, @field_c]
+      @index.stub_method(:fields => [@field_a, @field_b, @field_c])
     end
     
     it "should return fields that are flagged as prefixed" do
@@ -39,7 +30,7 @@ describe ThinkingSphinx::Index do
       @field_b = ThinkingSphinx::Field.stub_instance(:infixes => false)
       @field_c = ThinkingSphinx::Field.stub_instance(:infixes => true)
       
-      @index.fields = [@field_a, @field_b, @field_c]
+      @index.stub_method(:fields => [@field_a, @field_b, @field_c])
     end
     
     it "should return fields that are flagged as infixed" do

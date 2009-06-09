@@ -11,7 +11,12 @@ module ThinkingSphinx
     
     def concatenate(clause, separator = ' ')
       clause.split(', ').collect { |field|
-        "COALESCE(#{field}, '')"
+        case field
+        when /COALESCE/, "'')"
+          field
+        else
+          "COALESCE(CAST(#{field} as varchar), '')"
+        end
       }.join(" || '#{separator}' || ")
     end
     
@@ -41,7 +46,8 @@ module ThinkingSphinx
       value ? 'TRUE' : 'FALSE'
     end
     
-    def crc(clause)
+    def crc(clause, blank_to_null = false)
+      clause = "NULLIF(#{clause},'')" if blank_to_null
       "crc32(#{clause})"
     end
     
@@ -69,7 +75,7 @@ module ThinkingSphinx
     end
     
     def create_array_accum_function
-      if connection.raw_connection.server_version > 80200
+      if connection.raw_connection.respond_to?(:server_version) && connection.raw_connection.server_version > 80200
         execute <<-SQL
           CREATE AGGREGATE array_accum (anyelement)
           (

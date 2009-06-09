@@ -76,11 +76,12 @@ describe "ThinkingSphinx::ActiveRecord::Delta" do
       
       @person = Person.new
       @person.stub_method(
-        :in_core_index?     => false,
+        :in_both_indexes?     => false,
         :sphinx_document_id => 1
       )
       
-      @client = Riddle::Client.stub_instance(:update => true)
+      @client = Riddle::Client.new
+      @client.stub!(:update => true)
       Riddle::Client.stub_method(:new => @client)
     end
     
@@ -120,17 +121,16 @@ describe "ThinkingSphinx::ActiveRecord::Delta" do
     end
     
     it "shouldn't update the deleted attribute if not in the index" do
-      @person.send(:index_delta)
+      @client.should_not_receive(:update)
       
-      @client.should_not have_received(:update)
+      @person.send(:index_delta)
     end
     
     it "should update the deleted attribute if in the core index" do
-      @person.stub_method(:in_core_index? => true)
+      @person.stub_method(:in_both_indexes? => true)
+      @client.should_receive(:update)
       
       @person.send(:index_delta)
-      
-      @client.should have_received(:update)
     end
   end
 end

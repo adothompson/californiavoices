@@ -46,9 +46,11 @@ module ThinkingSphinx
       ids = matches.collect { |match| match[:attributes]["sphinx_internal_id"] }
       instances = ids.length > 0 ? klass.find(
         :all,
+        :joins      => options[:joins],
         :conditions => {klass.primary_key.to_sym => ids},
         :include    => (options[:include] || index_options[:include]),
-        :select     => (options[:select]  || index_options[:select])
+        :select     => (options[:select]  || index_options[:select]),
+        :order      => (options[:sql_order] || index_options[:sql_order])
       ) : []
 
       # Raise an exception if we find records in Sphinx but not in the DB, so
@@ -58,6 +60,10 @@ module ThinkingSphinx
         stale_ids = ids - instances.map {|i| i.id }
         raise StaleIdsException, stale_ids
       end
+
+      # if the user has specified an SQL order, return the collection
+      # without rearranging it into the Sphinx order
+      return instances if options[:sql_order]
 
       ids.collect { |obj_id|
         instances.detect { |obj| obj.id == obj_id }
