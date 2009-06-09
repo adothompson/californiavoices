@@ -1,4 +1,12 @@
+2009-06-09
 
+Updates for ffmpeg and x264 on dev and prod
+
+* FFmpeg version SVN-r19134, Copyright (c) 2000-2009 Fabrice Bellard, et al.
+  configuration: --enable-gpl --enable-nonfree --enable-pthreads --enable-libfaac --enable-libfaad --enable-libmp3lame --enable-libtheora --enable-libx264 --enable-libxvid
+
+* x264 0.67.1163 3f56e27
+  built on Jun  8 2009, gcc: 4.3.3
 
 2008-04-17
   Fixed bug in less_captcha
