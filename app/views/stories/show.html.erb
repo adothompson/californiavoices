@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <%= javascript_include_tag 'swfobject' %>
+  <%# javascript_include_tag 'swfobject' %>
 <% end %>
 
 <% content_for :side do %>
@@ -37,13 +37,11 @@
 
 
 <div class="white_box">
-  
   <% if @story.flash_sd != nil %>
-       <%= @story.flash_sd.embed_js %>
+    <%= @story.flash_sd.embed_js %>
   <% else %>
     Video is currently processing.  Check back later.
   <% end %>
-  
 </div>
 
 <% unless @u.nil? || @p.blank? %>
