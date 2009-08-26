@@ -86,6 +86,14 @@ class Upload < ActiveRecord::Base
         
     raise FormatNotRecognised unless inspector.valid? and inspector.video?
 
+    if !inspector.valid?
+      logger.info "\n\n-- #{self.id} -- CAVOICES - inspectors not valid #{self.public_filename}.\n\n"
+      raise FormatNotRecognised
+    elsif !inspector.video?
+      logger.info "\n\n-- #{self.id} -- CAVOICES - inspectors not video #{self.public_filename}.\n\n"
+      raise FormatNotRecognised      
+    end
+    
     logger.info "\n\n-- #{self.id} -- CAVOICES - inspectors valid, and video for #{self.public_filename}.\n\n"
     
     upload_metadata = {
