@@ -68,20 +68,26 @@ class Upload < ActiveRecord::Base
   end
   
   def read_and_save_metadata
-    logger.info "\n\n-- #{self.id} -- CAVOICES - reading metadata for #{self.public_filename}.\n\n"
+    logger.info "\n\n-- #{self.id} -- CAVOICES - 1. reading metadata for #{self.public_filename}.\n\n"
     
     # check if public_filename is exists else use temp_path
     
     if File.exist?(self.public_filename)
+      logger.info "\n\n-- #{self.id} -- CAVOICES - filename exists #{self.public_filename}.\n\n"
       inspector = RVideo::Inspector.new(:file => self.public_filename)
+      logger.info "\n\n-- #{self.id} -- CAVOICES - inspector created #{self.public_filename}.\n\n"
     elsif File.exist?(self.temp_path)
+      logger.info "\n\n-- #{self.id} -- CAVOICES - tmp filename exists #{self.public_filename}.\n\n"
       inspector = RVideo::Inspector.new(:file => self.temp_path)
+      logger.info "\n\n-- #{self.id} -- CAVOICES - inspector created #{self.public_filename}.\n\n"
     else
       raise NoFileSubmitted
     end
         
     raise FormatNotRecognised unless inspector.valid? and inspector.video?
-            
+
+    logger.info "\n\n-- #{self.id} -- CAVOICES - inspectors valid, and video for #{self.public_filename}.\n\n"
+    
     upload_metadata = {
       :width => (inspector.width rescue nil), 
       :height => (inspector.height rescue nil), 
