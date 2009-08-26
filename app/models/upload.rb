@@ -84,7 +84,7 @@ class Upload < ActiveRecord::Base
       raise NoFileSubmitted
     end
         
-    raise FormatNotRecognised unless inspector.valid? and inspector.video?
+#    raise FormatNotRecognised unless inspector.valid? and inspector.video?
 
     if !inspector.valid?
       logger.info "\n\n-- #{self.id} -- CAVOICES - inspectors not valid #{self.public_filename}.\n\n"
