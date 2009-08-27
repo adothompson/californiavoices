@@ -14,7 +14,7 @@
 #  updated_at          :datetime      
 #
 
-require 'kakra-rvideo'
+require 'rvideo'
 require 'action_controller'
 require 'action_controller/test_process.rb'
 
