@@ -13,6 +13,7 @@
       <div class="left"><%= icon p, :small %></div>
       <div><%= link_to h(p.f), p %></div>
       <div><%= mail_to h(p.email), p.email %></div>
+      <div>Last Activity: <%= p.last_activity_at %></div>
       <div><%= link_to_remote "#{ p.is_active ? 'deactivate' : 'activate' }", {:url => formatted_admin_user_path(p, 'js'), :method => :put}, {:id => p.dom_id('link')} %></div>			
       <% if p.user_id != nil %>
       <div><%= link_to_remote 'Delete account and all data.', {:url => formatted_admin_user_path(p, 'js'), :method=>:delete, :confirm=>DELETE_CONFIRM}, {:id => p.dom_id('delete')}  %></div>
