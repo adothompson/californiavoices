@@ -23,7 +23,8 @@
 #  updated_at        :datetime      
 #
 
-require 'rvideo'
+# require 'rvideo'
+require 'kakra-rvideo'
 
 class Upload < ActiveRecord::Base
 
