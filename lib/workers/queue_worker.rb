@@ -18,7 +18,7 @@ class QueueWorker < BackgrounDRb::MetaWorker
     begin
       if EncodingJob.processing?
         current_encoding = EncodingJob.current_encoding
-        processing_time = (Time.now - e.updated_at).to_i / 60 # minutes since status was updated to processing
+        processing_time = (Time.now - current_encoding.updated_at).to_i / 60 # minutes since status was updated to processing
         logger.info "-- #{Time.now} -- there is something in the processing queue (started #{processing_time} minutes ago)."
         
         # -- is that processing taking too long? updated_at field should be within 40min?
