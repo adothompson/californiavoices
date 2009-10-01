@@ -1,18 +1,15 @@
 class QueueWorker < BackgrounDRb::MetaWorker
   set_worker_name :queue_worker
   
-  def create(args = nil)
-    # this method is called, when worker is loaded for the first time
-    
+  def create(args = nil)  
     # TODO: increase timer to several minutes (3-5?)
-#     add_periodic_timer(300) { check_encoding_queue }
+    # add_periodic_timer(300) { check_encoding_queue }
     
     while true do
       logger.info "going again"
       check_encoding_queue
       sleep(300) 
     end
-    
   end
   
   def check_encoding_queue

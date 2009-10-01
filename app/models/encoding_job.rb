@@ -124,9 +124,15 @@ class EncodingJob < ActiveRecord::Base
 
   def encode_flv_flash
     logger.info "#{self.id} -- #{Time.now} -- encoding #{self.encoding_profile.name} w/ encode_flv_flash."
-    transcoder = RVideo::Transcoder.new
-    recipe = "ffmpeg -i $input_file$ -r #{self.encoding_profile.fps} -b $video_bitrate$ -acodec $audio_codec$ -ab $audio_bitrate$ -ar $audio_sample_rate$ -ac $audio_channels$ $resolution_and_padding$ -f $container$ -y $output_file$"
+    transcoder = RVideo::Transcoder.new self.upload.public_filename
+    # recipe = "ffmpeg -i $input_file$ -r $fps$ -b $video_bitrate$ -acodec $audio_codec$ -ab $audio_bitrate$ "
+    # recipe += "-ar $audio_sample_rate$ -ac $audio_channels$ $resolution_and_padding$ -f $container$ -y $output_file$"
+
+    recipe = "ffmpeg -i $input_file$ -r #{self.encoding_profile.fps} -b $video_bitrate$ -acodec $audio_codec$ -ab $audio_bitrate$ "
+    recipe += "-ar #{self.encoding_profile.audio_sample_rate} -ac #{self.encoding_profile.audio_channels} $resolution_and_padding$ "
+    recipe += "-f $container$ -y $output_file$"
     recipe += "\nflvtool2 -U $output_file$"
+    logger.info "#{self.id} -- #{Time.now} -- encoding recipe \n #{recipe}"
     transcoder.execute(recipe, self.recipe_options(self.upload.public_filename, self.tmp_filepath))
     logger.info "#{self.id} -- #{Time.now} -- \n #{transcoder.processed.to_yaml}"
   end
@@ -134,8 +140,10 @@ class EncodingJob < ActiveRecord::Base
   def encode_mp4
     # ffmpeg -i test.avi -r 24 -b 300k -acodec libfaac -ab 48k -ar 44100 -ac 1 -vcodec mpeg4 -s 320x240 -f mp4 -y test.mp4
     logger.info "#{self.id} -- #{Time.now} -- encoding #{self.encoding_profile.name} w/ encode_mp4."
-    transcoder = RVideo::Transcoder.new
-    recipe = "ffmpeg -i $input_file$ -r #{self.encoding_profile.fps} -b $video_bitrate$ -acodec $audio_codec$ -ab $audio_bitrate$ -ar $audio_sample_rate$ -ac $audio_channels$ -vcodec $video_codec$ $resolution_and_padding$ -f $container$ -y $output_file$"
+    transcoder = RVideo::Transcoder.new self.upload.public_filename
+    recipe = "ffmpeg -i $input_file$ -r #{self.encoding_profile.fps} -b $video_bitrate$ -acodec $audio_codec$ "
+    recipe += "-ab $audio_bitrate$ -ar #{self.encoding_profile.audio_sample_rate} -ac #{self.encoding_profile.audio_channels} "
+    recipe += "-vcodec $video_codec$ $resolution_and_padding$ -f $container$ -y $output_file$"
     transcoder.execute(recipe, self.recipe_options(self.upload.public_filename, self.tmp_filepath))
     logger.info "#{self.id} -- #{Time.now} -- \n #{transcoder.processed.to_yaml}"
   end  
@@ -143,18 +151,20 @@ class EncodingJob < ActiveRecord::Base
   def encode_mp3
     # ffmpeg -i test.avi -vn -acodec libmp3lame -ab 48k -ar 44100 -ac 1 -f mp3 -y test.mp3
     logger.info "#{self.id} -- #{Time.now} -- encoding #{self.encoding_profile.name} w/ encode_mp3."
-    transcoder = RVideo::Transcoder.new
-    recipe = "ffmpeg -i $input_file$ -vn -acodec $audio_codec$ -ab $audio_bitrate$ -ar $audio_sample_rate$ -ac $audio_channels$ -f $container$ -y $output_file$"
+    transcoder = RVideo::Transcoder.new self.upload.public_filename
+    recipe = "ffmpeg -i $input_file$ -vn -acodec $audio_codec$ -ab $audio_bitrate$ -ar #{self.encoding_profile.audio_sample_rate} "
+    recipe += "-ac #{self.encoding_profile.audio_channels} -f $container$ -y $output_file$"
     transcoder.execute(recipe, self.recipe_options(self.upload.public_filename, self.tmp_filepath))
     logger.info "#{self.id} -- #{Time.now} -- \n #{transcoder.processed.to_yaml}"
   end  
   
   def encode_unknown_format
     logger.info "Encoding with encode_unknown_format"
-    transcoder = RVideo::Transcoder.new
-    recipe = "ffmpeg -i $input_file$ -r 24 -f $container$ -vcodec $video_codec$ -b $video_bitrate_in_bits$ -ar $audio_sample_rate$ -ab $audio_bitrate$k -acodec $audio_codec$ -r 24 $resolution_and_padding$ -y $output_file$"
+    transcoder = RVideo::Transcoder.new self.upload.public_filename
+    recipe = "ffmpeg -i $input_file$ -r 24 -f $container$ -vcodec $video_codec$ -b $video_bitrate$ -ab $audio_bitrate$ "
+    recipe += "-ar #{self.encoding_profile.audio_sample_rate} -acodec $audio_codec$ -r 24 $resolution_and_padding$ -y $output_file$"
     logger.info "Unknown encoding format given but trying to encode anyway."
-    transcoder.execute(recipe, recipe_options(self.upload.tmp_filepath, self.tmp_filepath))
+    transcoder.execute(recipe, self.recipe_options(self.upload.tmp_filepath, self.tmp_filepath))
   end
   
   def recipe_options(input_file, output_file)
@@ -166,10 +176,10 @@ class EncodingJob < ActiveRecord::Base
       :container => profile.container, 
       :video_codec => profile.video_codec,
       :video_bitrate => profile.video_bitrate.to_s + "K", 
-      :fps => profile.fps.to_s, # FIXME: weird error doesn't like FPS being sent
+      :fps => "#{profile.fps.to_s}", # FIXME: weird error doesn't like FPS being sent
       :audio_codec => profile.audio_codec, 
       :audio_bitrate => profile.audio_bitrate.to_s + "K",
-      :audio_sample_rate => profile.audio_sample_rate.to_s,
+      :audio_sample_rate => profile.audio_sample_rate.to_s || 44100,
       :audio_channels => profile.audio_channels.to_s,
       :resolution_and_padding => self.ffmpeg_resolution_and_padding_no_cropping
     }
