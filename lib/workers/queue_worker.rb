@@ -8,7 +8,7 @@ class QueueWorker < BackgrounDRb::MetaWorker
     while true do
       logger.info "going again"
       check_encoding_queue
-      sleep(300) 
+      sleep(30) 
     end
   end
   
