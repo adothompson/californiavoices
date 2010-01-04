@@ -27,12 +27,18 @@ class HomeController < ApplicationController
       wants.rss {render :layout=>false}
     end
   end
-  def latest_comments
+  def newest_stories
     respond_to do |wants|
       wants.html {render :action=>'index'}
       wants.rss {render :layout=>false}
     end
   end
+#  def latest_comments
+#    respond_to do |wants|
+#      wants.html {render :action=>'index'}
+#      wants.rss {render :layout=>false}
+#    end
+#  end
 
   def terms
     render :layout => 'plain'
