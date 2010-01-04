@@ -1,6 +1,6 @@
 <%
    terms_of_service_label = "Accept #{link_to 'Terms of Service', tos_path, :target => 'blank'}"
-   %>
+%>
 
 <div class="blue_box">
   <div id="login_form">
@@ -16,9 +16,12 @@
     <%= f.password_field :password %>
     <%= f.password_field :password_confirmation, :label => 'Confirm Password' %>
     <% f.wrap nil, :label=>"" do  %> 
-      <%= less_reverse_captcha_field(:user)%>
+      <%= less_reverse_captcha_field(:user) %>
     <% end %>  
-    
+
+    <h2 class='underline'><%= "Additional Info" %></h2>
+
+
     <%= f.front :terms_of_service, :label => terms_of_service_label %>
     <%= check_box_tag :user_terms_of_service, 1, params[:terms_of_service], :class => 'checkbox', :name => 'user[terms_of_service]' %>
   </div>
