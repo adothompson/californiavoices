@@ -1,15 +1,13 @@
 <% content_for :head do%>
-  <%= auto_discovery_link_tag(:rss, "http://#{SITE}/latest_comments.rss", :title=>"Latest Comments") %>
-  <%= auto_discovery_link_tag(:rss, "http://#{SITE}/newest_members.rss", :title=>"Newest Members") %>
+  <%=  auto_discovery_link_tag(:rss, "http://#{SITE}/newest_stories.rss", :title=>"Latest Stories") %>
+  <%# auto_discovery_link_tag(:rss, "http://#{SITE}/latest_comments.rss", :title=>"Latest Comments") %>
+  <%# auto_discovery_link_tag(:rss, "http://#{SITE}/newest_members.rss", :title=>"Newest Members") %>
 <% end%>
 
 <% content_for :side do %>
 <div class="blue_box">
   <h2 class="underline">Welcome to California Voices</h2>
   <p>California Voices is an after-school digital storytelling program designed to guide students to have a greater commitment to academic achievement, career goals and civic engagement, while preserving the legacy of elders who have made significant contributions to culture, community, and country.</p>
-  <!--<p>Facilitators guide a group of 15-20 students, five hours per week in the art of finding compelling storytellers, conducting interviews, preparing research, scriptwriting, storyboarding, producing and editing video and music.</p>
-  <p>At the conclusion of the school year, student teams have several well-crafted videos to present to their school and community, in addition to being included in the California Voices archive.</p>-->
-
   <%= render :partial => 'topics/list' %>
 
   <%= render :partial => 'regions/list'%>
