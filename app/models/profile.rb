@@ -88,21 +88,14 @@ class Profile < ActiveRecord::Base
     self.location.name
   end
   
-  # acts_as_ferret :fields => [ :location_name, :f, :about_me ], :remote=>true
-
-#   define_index do
-#     indexes location, about_me, first_name, last_name
-#     indexes user.login, :as => :login
-#     set_property :min_prefix_len => 3, :morphology => false
-#   end
-  
-  file_column :icon, :magick => {
-    :versions => { 
-      :big => {:crop => "1:1", :size => "150x150", :name => "big"},
-      :medium => {:crop => "1:1", :size => "100x100", :name => "medium"},
-      :small => {:crop => "1:1", :size => "50x50", :name => "small"}
-    }
-  }
+  has_attached_file :icon,
+    :styles => {
+      :big => "150x150#",
+      :medium => "100x100#",
+      :small => "50x50#"
+    },
+    :default_url => "/avatar_default_:style.png",
+    :path => ":rails_root/public/system/:attachment/:id/:style/:basename.:extension"
   
 #   cattr_accessor :featured_profile
 #   @@featured_profile = {:date=>Date.today-4, :profile=>nil}

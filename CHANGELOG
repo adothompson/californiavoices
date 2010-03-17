@@ -8,6 +8,9 @@ Updates for ffmpeg and x264 on dev and prod
 * x264 0.67.1163 3f56e27
   built on Jun  8 2009, gcc: 4.3.3
 
+2009-10-07
+  Upgraded from file_column to paperclip
+
 2008-04-17
   Fixed bug in less_captcha
 
